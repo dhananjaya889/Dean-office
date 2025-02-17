@@ -16,7 +16,7 @@
                         <div class="col-sm-9">
                         </div>
                         <div class="col-sm-3">
-                            <a href="{{ url('medical/create_lec') }}" class="btn btn-info">Submit medicals</a>
+                            <a href="{{ url('medical/create_lec') }}" class="btn btn-info">Submit medicals for lectures</a>
                         </div>
                     </div>
 

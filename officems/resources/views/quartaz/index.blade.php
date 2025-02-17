@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Quartaz')
+@section('title', 'Quartz')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Quartaz</div>
+                <div class="card-header bg-primary text-white">Quartz</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-sm-3"></div>
                         <div class="col-sm-3">
-                            <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Create</a>
+                            <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quartz</a>
                         </div>
                     </div>
 

@@ -80,7 +80,7 @@
                         <div class="mb-3"><label class="form-label">Experience</label>
                             <textarea name="experience" class="form-control"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Create User</button>
+                        <button type="submit" class="btn btn-success w-100" onclick="window.history.back();">Create User</button>
                     </form>
                 </div>
             </div>
