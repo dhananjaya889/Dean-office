@@ -13,10 +13,10 @@
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
                     <div class="row">
-                        <div class="col-sm-6">
+                        {{-- <div class="col-sm-6">
                             <input type="text" id="search" class="form-control mb-3" placeholder="Search quartaz...">
-                        </div>
-                        <div class="col-sm-3"></div>
+                        </div> --}}
+                        <div class="col-sm-9"></div>
                         <div class="col-sm-3">
                             <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quartz</a>
                         </div>
