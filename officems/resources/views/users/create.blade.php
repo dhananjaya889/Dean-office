@@ -57,11 +57,12 @@
                             <select name="role" id="" class="form-control">
                                 <option value="admin">Admin</option>
                                 <option value="staff">Staff</option>
-                                <option value="lecture">Lecture</option>
+                                <option value="lecturer">Lecturer</option>
+                                <option value="temporary-lecturer">Temporary Lecturer</option>
                                 <option value="student">Student</option>
-                                <option value="demostrator">Demostrator</option>
-                                <option value="non-academict">Non-Acedamic</option>
-                                <option value="clearning-services">Cleaning Services</option>
+                                <option value="temporary-demostrator">Temporary-Demostrator</option>
+                                <option value="non-academic">Non-Acedamic</option>
+                                <option value="cleaning-services">Cleaning Services</option>
                             </select>
                         </div>
 

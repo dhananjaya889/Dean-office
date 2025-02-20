@@ -92,8 +92,7 @@ class UserController extends Controller
                 ->orWhere('role', 'like', "%{$search}%");
         }
 
-
-        return response()->json($query->paginate(10));
+        return response()->json($query->paginate(07));
     }
 
     public function getUserById($id)
