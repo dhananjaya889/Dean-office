@@ -10,7 +10,9 @@ class QuartazItemController extends Controller
 {
     public function create($id)
     {
-        $items = Item::all();
+        $qids = QuartazItem::all()->pluck('item_id');
+        $items = Item::whereNotIn('id', $qids)->get();
+
         return view('quartaz.quartazitem', compact('items', 'id'));
     }
 

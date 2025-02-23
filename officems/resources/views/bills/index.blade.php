@@ -62,7 +62,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="paginationLinks"></div>
+                <div id="paginationLinks">
+                    {{ $bills->links() }}
+                </div>
 
             </div>
         </div>

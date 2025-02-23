@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Lectures & Practicals Medicals')
+@section('title', 'Classes & Practicals Medicals')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Medicals for lectures</div>
+                <div class="card-header bg-primary text-white">Medicals for Classes & Practicals</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -16,7 +16,7 @@
                         <div class="col-sm-9">
                         </div>
                         <div class="col-sm-3">
-                            <a href="{{ url('medical/create_lec') }}" class="btn btn-info">Submit medicals for lectures</a>
+                            <a href="{{ url('medical/create_lec') }}" class="btn btn-info">Submit medicals for Classes</a>
                         </div>
                     </div>
 
@@ -26,7 +26,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Student Name</th>
-                                    <th>Address</th>
                                     <th>Contact</th>
                                     <th>Register Number</th>
                                     <th>Academic Year</th>
@@ -34,6 +33,7 @@
                                     <th>Semester</th>
                                     <th>Degree Program</th>
                                     <th>Medical Image</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -43,7 +43,6 @@
                                     <tr>
                                         <td>{{ $medical->id }}</td>
                                         <td>{{ $medical->st_name }}</td>
-                                        <td>{{ $medical->st_address }}</td>
                                         <td>{{ $medical->st_contact }}</td>
                                         <td>{{ $medical->register_number }}</td>
                                         <td>{{ $medical->academic_year }}</td>
@@ -58,6 +57,7 @@
                                                 No Image
                                             @endif
                                         </td>
+                                        <td>{{ $medical->status }}</td>
                                         <td>
                                             <a href="{{ url('medical/view_lec/'. $medical->id) }}"
                                                 class="btn btn-primary btn-sm">View</a>
@@ -75,7 +75,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="paginationLinks"></div>
+                    <div id="paginationLinks">
+                        {{ $medicals->links() }}
+                    </div>
 
                 </div>
             </div>

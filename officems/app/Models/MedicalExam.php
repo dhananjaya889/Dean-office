@@ -21,6 +21,7 @@ class MedicalExam extends Model
         'medical_details',
         'agree',
         'medical_image',
+        'status',
     ];
 
     protected $casts = [

@@ -22,7 +22,7 @@
 
     <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
         <!-- Vertical Navbar -->
-        <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
+        <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-warning border-bottom border-bottom-lg-0 border-end-lg"
             id="navbarVertical">
             <div class="container-fluid">
                 <!-- Toggler -->
@@ -125,6 +125,20 @@
                                     <i class="bi bi-file-medical-fill"></i> <span>Exam Medicals</span>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
+                                    href="{{ url('/attendance') }}" style="transition: all 0.3s ease;">
+                                    <i class="bi bi-file-medical-fill"></i> <span>Attendance</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                                    href="{{ url('/attendance/create') }}" style="transition: all 0.3s ease;">
+                                    <i class="bi bi-file-medical-fill"></i> <span>Add Attendance</span>
+                                </a>
+                            </li>
                         @endif
 
                         @if (Auth::user()->role == 'lecture')
@@ -136,11 +150,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
-                                   href="{{ url('/quartaz/user/' . Auth::user()->id) }}" style="transition: all 0.3s ease;">
+                                    href="{{ url('/quartaz/user/' . Auth::user()->id) }}"
+                                    style="transition: all 0.3s ease;">
                                     <i class="bi bi-bookmarks"></i> <span>Quartaz</span>
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('bills') }}" style="transition: all 0.3s ease;">
@@ -433,6 +448,65 @@
             .logo-image {
                 width: 60px !important;
             }
+        }
+
+        #paginationLinks nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        #paginationLinks .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        #paginationLinks .pagination li {
+            margin: 0 5px;
+        }
+
+        #paginationLinks .pagination li a,
+        #paginationLinks .pagination li span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            text-decoration: none;
+            color: #007bff;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid #dee2e6;
+        }
+
+        #paginationLinks .pagination li a:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        #paginationLinks .pagination .active span {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #paginationLinks .pagination .disabled span {
+            background: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        #paginationLinks .pagination li:first-child a,
+        #paginationLinks .pagination li:last-child a {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #paginationLinks .pagination li:first-child a:hover,
+        #paginationLinks .pagination li:last-child a:hover {
+            background: #0056b3;
         }
     </style>
 

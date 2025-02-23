@@ -45,7 +45,7 @@ class ItemController extends Controller
                 ->orWhere('name', 'like', "%{$search}%");
         }
 
-        return response()->json($query->paginate(10));
+        return response()->json($query->paginate(7));
     }
 
     public function getItemsById($id)

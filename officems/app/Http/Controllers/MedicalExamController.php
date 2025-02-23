@@ -12,9 +12,9 @@ class MedicalExamController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $medicals = MedicalExam::paginate(10);
+            $medicals = MedicalExam::paginate(7);
         }else{
-            $medicals = MedicalExam::where('registation_number', Auth::user()->reg_no)->get();
+            $medicals = MedicalExam::where('registation_number', Auth::user()->reg_no)->paginate(7);
         }
 
         return view('medical.index_exam', compact('medicals'));
@@ -64,6 +64,7 @@ class MedicalExamController extends Controller
             'medical_details' => json_encode($request->medical_details), // Convert array to JSON
             'agree' => $request->agree,
             'medical_image' => $imagePath, // Store image path
+            'status' => 'pending', // Default status
         ]);
 
         return redirect()->back()->with('success', 'Medical exam submission successful!');
@@ -75,4 +76,15 @@ class MedicalExamController extends Controller
         info($medi);
         return view('medical.view_exam', compact('medi'));
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $medical = MedicalExam::findOrFail($id);
+        $medical->status = $request->status; // 'approved' or 'rejected'
+        $medical->save();
+
+        return redirect()->back()->with('success', 'Medical status updated successfully.');
+    }
+
+
 }

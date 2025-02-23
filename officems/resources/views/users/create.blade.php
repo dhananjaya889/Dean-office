@@ -22,34 +22,62 @@
                     @endif
                     <form action="{{ route('users.store') }}" method="POST">
                         @csrf
-                        <div class="mb-3"><label class="form-label">First Name</label><input type="text"
-                                name="first_name" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Last Name</label><input type="text"
-                                name="last_name" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Email</label><input type="email" name="email"
-                                class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Registration Number</label><input type="text"
-                                name="reg_no" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Password</label><input type="password" name="password"
-                                class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Date of Birth</label><input type="date"
-                                name="dob" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Phone Number</label><input type="number"
-                                name="phone_number" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Whatsapp Number</label><input type="number"
-                                name="whatsapp" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">NIC</label><input type="text" name="nic"
-                                class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Address Line 1</label><input type="text"
-                                name="address_l1" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Address Line 2</label><input type="text"
-                                name="address_l2" class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">City</label><input type="text" name="city"
-                                class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Province</label><input type="text" name="province"
-                                class="form-control" required></div>
-                        <div class="mb-3"><label class="form-label">Postal Code</label><input type="text"
-                                name="postal_code" class="form-control" required></div>
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text"name="first_name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text"name="last_name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email"class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Registration Number</label>
+                            <input type="text"name="reg_no" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password"class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date"name="dob" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="number"name="phone_number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Whatsapp Number</label>
+                            <input type="number"name="whatsapp" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">NIC</label>
+                            <input type="text" name="nic"class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address Line 1</label>
+                            <input type="text"name="address_l1" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address Line 2</label>
+                            <input type="text"name="address_l2" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <input type="text" name="city"class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Province</label>
+                            <input type="text" name="province"class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Postal Code</label>
+                            <input type="text"name="postal_code" class="form-control" required>
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label">Role</label>

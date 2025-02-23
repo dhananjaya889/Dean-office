@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Medical')
+@section('title', 'Add Medical')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Submit Medical for lectures</div>
+                <div class="card-header bg-primary text-white">Submit Medical for End Examination</div>
                 <div class="card-body">
 
                     @if ($errors->any())
@@ -23,33 +23,47 @@
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Student Name</label>
-                            <input type="text" name="student_name" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Year</label>
-                            <input type="text" name="year" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Level</label>
-                            <input type="text" name="level" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Semester</label>
-                            <input type="text" name="semester" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Registration Number</label>
-                            <input type="text" name="registation_number" class="form-control" required>
+                            <input type="text" name="student_name" class="form-control" value="{{ auth()->user()->name }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Contact Number</label>
-                            <input type="text" name="contact_number" class="form-control" required>
+                            <input type="text" name="contact_number" class="form-control" value="{{ auth()->user()->phone_number }}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Degree Program</label>
-                            <input type="text" name="degree_programe" class="form-control" required>
+                            <label class="form-label">Registration Number</label>
+                            <input type="text" name="registration_number" class="form-control" value="{{ auth()->user()->reg_no }}" readonly>
                         </div>
-
+                        <div class="mb-3">
+                            <label class="form-label">Academic Year</label>
+                            <input type="text" name="year" class="form-control" required>
+                        </div>
+                        <div class="mb-3"><label class="form-label">Level</label>
+                            <select name="level"
+                                class="form-control" required>
+                                <option value="">---Select Level---</option>
+                                <option value="level">Level 01</option>
+                                <option value="level">Level 02</option>
+                                <option value="level">Level 03</option>
+                                <option value="level">Level 04</option>
+                            </select>
+                        </div>
+                        <div class="mb-3"><label class="form-label">Semester</label>
+                            <select name="semester"
+                                class="form-control" required>
+                                <option value="">---Select Semester---</option>
+                                <option value="semester">Semester 01</option>
+                                <option value="semester">Semester 02</option>
+                            </select>
+                        </div>
+                        <div class="mb-3"><label class="form-label">Degree Program</label>
+                            <select name="degree_programe"
+                                class="form-control" required>
+                                <option value="">---Select Program---</option>
+                                <option value="ict">ICT</option>
+                                <option value="et">ET</option>
+                                <option value="bst">BST</option>
+                            </select>
+                        </div>
                         <div id="subjects-container">
                             <label class="form-label">Subject Details</label>
                             <div class="subject-group mb-2 mt-2">
@@ -71,13 +85,11 @@
                                 <input type="text" name="medical_details[0][medical_certificate_number]"
                                     class="form-control mb-2" placeholder="Medical Certificate Number" required>
                                 <input type="text" name="medical_details[0][period_of_covered]" class="form-control mb-2"
-                                    placeholder="Period of Covered" required>
-                                <input type="text" name="medical_details[0][subject_code]" class="form-control mb-2"
-                                    placeholder="Subject Code" required>
+                                    placeholder="Period of Covered ( Days )" required>
                                 <input type="date" name="medical_details[0][date_of_issue]" class="form-control mb-2"
                                     required>
                                 <input type="text" name="medical_details[0][place_of_issue]" class="form-control mb-2"
-                                    placeholder="Place of Issue" required>
+                                    placeholder="Place of Issue Medical Certificate" required>
                                 <hr>
                             </div>
                         </div>

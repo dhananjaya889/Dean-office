@@ -54,7 +54,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="paginationLinks"></div>
+                    <div id="paginationLinks">
+                            {{ $quartaz->links() }}
+                    </div>
 
                 </div>
             </div>

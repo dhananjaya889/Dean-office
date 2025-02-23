@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\QuartazUser;
+use App\Mail\QuartazUserAddedMail;
+use Illuminate\Support\Facades\Mail;
 
 class QuartazUserController extends Controller
 {
     public function create($id)
     {
-        $user = User::where('role', 'lecture')->get();
+       
+        $quids = QuartazUser::pluck('user_id')->toArray();
+
+       
+        $user = User::whereIn('role', ['lecture', 'temporary-demostrator'])
+                    ->whereNotIn('id', $quids)
+                    ->get();
+
         return view('quartaz.quartazuser', compact('user', 'id'));
     }
 
@@ -22,6 +31,12 @@ class QuartazUserController extends Controller
         ]);
 
         QuartazUser::create($request->all());
+
+        $user = User::find($request->user_id);
+
+        if ($user) {
+            Mail::to($user->email)->send(new QuartazUserAddedMail());
+        }
 
         return back();
 

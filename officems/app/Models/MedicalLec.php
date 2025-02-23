@@ -10,7 +10,6 @@ class MedicalLec extends Model
     use HasFactory;
     protected $fillable = [
         'st_name',
-        'st_address',
         'st_contact',
         'register_number',
         'academic_year',
@@ -19,6 +18,7 @@ class MedicalLec extends Model
         'degree_programe',
         'subject_details',
         'medical_image',
+        'status',
     ];
 
     protected $casts = [

@@ -11,9 +11,9 @@ class MedicalLecController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $medicals = MedicalLec::paginate(10);
+            $medicals = MedicalLec::paginate(7);
         }else{
-            $medicals = MedicalLec::where('register_number', Auth::user()->reg_no)->get();
+            $medicals = MedicalLec::where('register_number', Auth::user()->reg_no)->paginate(7);
         }
         
         return view('medical.index_lec', compact('medicals'));
@@ -28,7 +28,6 @@ class MedicalLecController extends Controller
     {
         $request->validate([
             'st_name' => 'required|string|max:255',
-            'st_address' => 'required|string|max:255',
             'st_contact' => 'required|string|max:255',
             'register_number' => 'required|string|max:255',
             'academic_year' => 'required|string|max:255',
@@ -73,5 +72,15 @@ class MedicalLecController extends Controller
         $medi = MedicalLec::find($id);
         info($medi);
         return view('medical.view_lec', compact('medi'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        
+        $medical = MedicalLec::findOrFail($id);
+        $medical->status = $request->status; // 'approved' or 'rejected'
+        $medical->save();
+
+        return redirect()->back()->with('success', 'Medical status updated successfully.');
     }
 }

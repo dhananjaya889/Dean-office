@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View Medical for lecture')
+@section('title', 'View Medical Classes & Practicals')
 
 @section('content')
 <div class="container mt-4">
@@ -43,6 +43,26 @@
                         <div class="col-md-6">
                             <strong>Degree Program:</strong> {{ $medi->degree_programe }}
                         </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Status:</strong> {{ $medi->status }}
+                        </div>
+                        @if (Auth::user()->role == "admin" || Auth::user()->role == 'staff')
+                    
+                        <div class="col-md-6">
+                            <form action="{{route('medical.chenge_status_lec', $medi->id)}}" method="post">
+                                @csrf
+                                <strong>Change status:</strong>
+                                <select name="status" id="edit_status" class="form-control">
+                                    <option value="pending" {{ $medi->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="approved" {{ $medi->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                    <option value="rejected" {{ $medi->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-2 w-100">Change</button>
+                            </form>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

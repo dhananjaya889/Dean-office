@@ -58,7 +58,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="paginationLinks"></div>
+                <div id="paginationLinks">
+                    {{ $nortices->links() }}
+                </div>
 
             </div>
         </div>

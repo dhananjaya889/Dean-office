@@ -84,23 +84,5 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Update the profile photo for the user.
-     *
-     * @param  mixed  $photo
-     * @return void
-     */
-    public function updateProfilePhoto($photo)
-{
-    // Check if the user already has a profile photo and delete it if necessary
-    if ($this->profile_photo_path) {
-        Storage::delete($this->profile_photo_path);
-    }
-
-    // Store the new photo in the 'profile-photos' directory within 'public' disk
-    $path = $photo->store('profile-photos', 'public');
-
-    // Update the user's profile photo path in the database
-    $this->update(['profile_photo_path' => $path]);
-}
+   
 }

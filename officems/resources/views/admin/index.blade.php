@@ -59,6 +59,9 @@
                     <p class="mb-0">{{$user->city}}, {{$user->province}}, {{$user->postal_code}}</p>
                 </div>
             </div>
+            <div class="card-body text-center d-grid gap-2 col-6 mx-auto">
+                <a href="{{url('/user/edit/'.$user->id)}}" type="button" class="btn btn-dark">Edit Profile</a>
+            </div>
 
             <div class="card-footer text-center">
                 

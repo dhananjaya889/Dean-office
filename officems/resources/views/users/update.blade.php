@@ -41,8 +41,8 @@
                     </div>
 
                     <div class="mb-3"><label class="form-label">Registration Number</label>
-                        <input type="text" name="reg_no" 
-                            class="form-control" value="{{$user->reg_no}}" required>
+                        <input type="text" name="reg_no" class="form-control" value="{{$user->reg_no}}" required>
+                            
                     </div>
 
                     <div class="mb-3"><label class="form-label">Password</label>

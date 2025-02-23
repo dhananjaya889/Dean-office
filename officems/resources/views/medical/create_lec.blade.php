@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Submit Medical for lectures</div>
+                <div class="card-header bg-primary text-white">Submit Medical for Classes</div>
                 <div class="card-body">
 
                     @if ($errors->any())
@@ -23,35 +23,46 @@
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Student Name</label>
-                            <input type="text" name="st_name" class="form-control" required>
+                            <input type="text" name="student_name" class="form-control" value="{{ auth()->user()->name }}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Address</label>
-                            <input type="text" name="st_address" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Contact</label>
-                            <input type="text" name="st_contact" class="form-control" required>
+                            <label class="form-label">Contact Number</label>
+                            <input type="text" name="contact_number" class="form-control" value="{{ auth()->user()->phone_number }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Register Number</label>
-                            <input type="text" name="register_number" class="form-control" required>
+                            <input type="text" name="registration_number" class="form-control" value="{{ auth()->user()->reg_no }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Academic Year</label>
                             <input type="text" name="academic_year" class="form-control" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Level</label>
-                            <input type="text" name="level" class="form-control" required>
+                        <div class="mb-3"><label class="form-label">Level</label>
+                            <select name="level"
+                                class="form-control" required>
+                                <option value="">---Select Level---</option>
+                                <option value="level">Level 01</option>
+                                <option value="level">Level 02</option>
+                                <option value="level">Level 03</option>
+                                <option value="level">Level 04</option>
+                            </select>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Semester Year</label>
-                            <input type="text" name="semester_year" class="form-control" required>
+                        <div class="mb-3"><label class="form-label">Semester</label>
+                            <select name="semester"
+                                class="form-control" required>
+                                <option value="">---Select Semester---</option>
+                                <option value="semester">Semester 01</option>
+                                <option value="semester">Semester 02</option>
+                            </select>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Degree Program</label>
-                            <input type="text" name="degree_programe" class="form-control" required>
+                        <div class="mb-3"><label class="form-label">Degree Program</label>
+                            <select name="degree_programe"
+                                class="form-control" required>
+                                <option value="">---Select Program---</option>
+                                <option value="ict">ICT</option>
+                                <option value="et">ET</option>
+                                <option value="bst">BST</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -68,7 +79,7 @@
                                     placeholder="Subject Code" required>
                                 <input type="date" name="subject_details[0][date]" class="form-control mb-2" required>
                                 <input type="text" name="subject_details[0][pace_of_issue]" class="form-control mb-2"
-                                    placeholder="Place of Issue" required>
+                                    placeholder="Place of Issue Medical Certificate" required>
                                 <input type="text" name="subject_details[0][medical_cetificate_number]"
                                     class="form-control mb-2" placeholder="Medical Certificate Number" required>
                                     <hr>
@@ -96,7 +107,7 @@
             <input type="text" name="subject_details[\${subjectCount}][name_of_subject]" class="form-control mb-2" placeholder="Name of Subject" required>
             <input type="text" name="subject_details[\${subjectCount}][subject_code]" class="form-control mb-2" placeholder="Subject Code" required>
             <input type="date" name="subject_details[\${subjectCount}][date]" class="form-control mb-2" required>
-            <input type="text" name="subject_details[\${subjectCount}][pace_of_issue]" class="form-control mb-2" placeholder="Place of Issue" required>
+            <input type="text" name="subject_details[\${subjectCount}][pace_of_issue]" class="form-control mb-2" placeholder="Place of Issue Medical Certificate" required>
             <input type="text" name="subject_details[\${subjectCount}][medical_cetificate_number]" class="form-control mb-2" placeholder="Medical Certificate Number" required>
             <hr>
         `;

@@ -74,13 +74,15 @@
             fetchUsers(this.value);
         });
 
-        function fetchUsers(search = '') {
-            fetch(`/api/users?search=${search}`)
+        function fetchUsers(search = '', page = 1) {
+            fetch(`/api/users?search=${search}&page=${page}`)
                 .then(response => response.json())
                 .then(data => {
                     let tbody = document.getElementById('userTableBody');
+                    let paginationLinks = document.getElementById('paginationLinks');
 
                     tbody.innerHTML = '';
+                    paginationLinks.innerHTML = '';
                     data.data.forEach(user => {
                         let deleteRoute = `/users/${user.id}`;
                         let row = `<tr>
@@ -102,6 +104,19 @@
                     </tr>`;
                         tbody.innerHTML += row;
                     });
+
+                    // Generate pagination links
+                    if (data.links) {
+                        data.links.forEach(link => {
+                            let pageLink = document.createElement('button');
+                            pageLink.innerHTML = link.label;
+                            pageLink.className = `btn ${link.active ? 'btn-primary' : 'btn-light'} mx-1`;
+                            pageLink.onclick = () => fetchUsers(search, link.url.split('page=')[1]);
+                            pageLink.disabled = link.active;
+                            paginationLinks.appendChild(pageLink);
+                        });
+                    }
+
                 });
         }
 
@@ -136,6 +151,10 @@
         }
 
         fetchUsers();
+
+        // document.getElementById('search').addEventListener('keyup', function() {
+        //     fetchUsers(this.value);
+        // });
     </script>
 
 @endsection

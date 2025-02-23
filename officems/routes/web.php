@@ -9,6 +9,7 @@ use App\Http\Controllers\QuartazController;
 use App\Http\Controllers\QuartazItemController;
 use App\Http\Controllers\QuartazUserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AtendanceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -77,10 +78,18 @@ Route::middleware([
     Route::get('medical/create_lec', [MedicalLecController::class,'create'])->name('medical.createlec');
     Route::post('medical/store_lec', [MedicalLecController::class, 'store'])->name('medical.store_lec');
     Route::get('medical/view_lec/{id}',[MedicalLecController::class,'show'])->name('medical.view_lec');
+    Route::post('medical/chenge_status_lec/{id}',[MedicalLecController::class,'updateStatus'])->name('medical.chenge_status_lec');
 
     Route::get('medical_exam', [MedicalExamController::class, 'index'])->name('medical_exam');
     Route::get('medical/create_exam', [MedicalExamController::class,'create'])->name('medical.create_exam');
     Route::post('medical/store_exam', [MedicalExamController::class, 'store'])->name('medical.store_exam');
     Route::get('medical/view_exam/{id}',[MedicalExamController::class,'show'])->name('medical.view_exam');
+    Route::post('medical/chenge_status_exam/{id}',[MedicalExamController::class,'updateStatus'])->name('medical.chenge_status_exam');
+
+    //attendance
+    Route::get('/attendance', [AtendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/attendance/create', [AtendanceController::class, 'create'])->name('attendance.create');
+    Route::post('/attendance', [AtendanceController::class, 'store'])->name('attendance.store');
+    Route::get('/attendance/download', [AtendanceController::class, 'download'])->name('attendance.download');
 
 });

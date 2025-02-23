@@ -16,9 +16,9 @@ class BillController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $bills = Bill::all();
+            $bills = Bill::paginate(10);
         }else{
-            $bills = Bill::where('assign_user', Auth::user()->id)->get();
+            $bills = Bill::where('assign_user', Auth::user()->id)->paginate(10);
         }
 
         return view('bills.index',compact('bills'));
@@ -91,7 +91,7 @@ class BillController extends Controller
                 ->orWhere('name', 'like', "%{$search}%");
         }
 
-        return response()->json($query->paginate(10));
+        return response()->json($query->paginate(7));
     }
 
 

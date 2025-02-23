@@ -14,9 +14,9 @@ class NoticeController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $nortices = Notices::all();
+            $nortices = Notices::paginate(10);
         }else{
-            $nortices = Notices::where('role', Auth::user()->role)->get();
+            $nortices = Notices::where('role', Auth::user()->role)->paginate(10);
         }
         
         return view('notices.index', compact('nortices'));
@@ -57,7 +57,7 @@ class NoticeController extends Controller
                 ->orWhere('title', 'like', "%{$search}%");
         }
 
-        return response()->json($query->paginate(10));
+        return response()->json($query->paginate(7));
     }
 
     public function getNoticesById($id)

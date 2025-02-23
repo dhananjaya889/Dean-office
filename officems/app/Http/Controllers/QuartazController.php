@@ -11,7 +11,7 @@ class QuartazController extends Controller
 {
     public function index()
     {
-        $quartaz = Quartaz::all();
+        $quartaz = Quartaz::paginate(10);
         return view('quartaz.index', compact('quartaz'));
     }
 
@@ -50,7 +50,7 @@ class QuartazController extends Controller
                 ->orWhere('address', 'like', "%{$search}%");
         }
 
-        return response()->json($query->paginate(10));
+        return response()->json($query->paginate(7));
     }
 
     public function getQuartazById($id)
