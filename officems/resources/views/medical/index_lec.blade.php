@@ -61,14 +61,18 @@
                                         <td>
                                             <a href="{{ url('medical/view_lec/'. $medical->id) }}"
                                                 class="btn btn-primary btn-sm">View</a>
-
-                                            <form action="" method="POST"
-                                                style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure?');">Delete</button>
-                                            </form>
+                                        </td>
+                                        <td>
+                                                @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                                                <form action="{{route('medical_lec.destroy', $medical->id)}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this medical?')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+        
+                                                @else
+                                                <button type="submit" class="btn btn-danger" disabled>Delete</button>
+                                                @endif
                                         </td>
                                     </tr>
                                 @endforeach

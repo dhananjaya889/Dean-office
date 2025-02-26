@@ -14,9 +14,9 @@ class NoticeController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $nortices = Notices::paginate(10);
+            $nortices = Notices::paginate(7);
         }else{
-            $nortices = Notices::where('role', Auth::user()->role)->paginate(10);
+            $nortices = Notices::where('role', Auth::user()->role)->paginate(7);
         }
         
         return view('notices.index', compact('nortices'));

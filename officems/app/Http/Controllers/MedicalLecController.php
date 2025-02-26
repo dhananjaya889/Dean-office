@@ -83,4 +83,16 @@ class MedicalLecController extends Controller
 
         return redirect()->back()->with('success', 'Medical status updated successfully.');
     }
+
+    public function destroy($id)
+    {
+        // Find the user by ID
+        $medical_lecs = MedicalLec::findOrFail($id);
+
+        // Delete the user
+        $medical_lecs->delete();
+
+        // Redirect back with success message
+        return redirect()->route('medical_lec')->with('success', 'Medical deleted successfully!');
+    }
 }

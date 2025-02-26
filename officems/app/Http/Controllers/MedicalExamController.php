@@ -86,5 +86,16 @@ class MedicalExamController extends Controller
         return redirect()->back()->with('success', 'Medical status updated successfully.');
     }
 
+    public function destroy($id)
+    {
+        // Find the user by ID
+        $medical_exams = MedicalExam::findOrFail($id);
+
+        // Delete the user
+        $medical_exams->delete();
+
+        // Redirect back with success message
+        return redirect()->route('medical_exam')->with('success', 'Medical deleted successfully!');
+    }
 
 }

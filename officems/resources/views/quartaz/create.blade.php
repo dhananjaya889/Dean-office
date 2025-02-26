@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Quartaz')
+@section('title', 'Create Quarters')
 
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">Add Quartz</div>
+            <div class="card-header bg-primary text-white">Add Quarters</div>
             <div class="card-body">
                
                 @if ($errors->any())
@@ -23,27 +23,27 @@
                 
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Quartz Number</label>
+                        <label class="form-label">Quarters Number</label>
                         <input type="text" name="num" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Quartz Address</label>
+                        <label class="form-label">Quarters Address</label>
                         <input type="text" name="address" class="form-control" required>
                     </div>
-                    <div class="mb-3"><label class="form-label">About Quartz Description</label>
+                    <div class="mb-3"><label class="form-label">About Quarters Description</label>
                         <textarea name="description" class="form-control"></textarea>
                     </div>
-                    <div class="mb-3"><label class="form-label">Quartz Status</label>
+                    <div class="mb-3"><label class="form-label">Quarters Status</label>
                         <select name="status"
                             class="form-control">
-                            <option value="selected">Selected Quartz</option>
-                            <option value="unselected">Unselected Quartz</option>
-                            <option value="repearing">Repearing Quartz</option>
-                            <option value="need to repair">Need to Repair Quartz</option>
+                            <option value="selected">Selected Quarters</option>
+                            <option value="unselected">Unselected Quarters</option>
+                            <option value="repearing">Repearing Quarters</option>
+                            <option value="need to repair">Need to Repair Quarters</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success w-100">Add Quartz</button>
+                    <button type="submit" class="btn btn-success w-100">Add Quarters</button>
                 </form>
             </div>
         </div>

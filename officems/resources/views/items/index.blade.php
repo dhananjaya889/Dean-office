@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Items')
+@section('title', 'Quarters Items')
 
 @section('content')
 
@@ -49,7 +49,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="paginationLinks"></div>
+                <div id="paginationLinks">
+                    {{$items->links()}}
+                </div>
 
             </div>
         </div>

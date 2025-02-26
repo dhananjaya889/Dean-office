@@ -132,7 +132,7 @@
                     <p><strong>Date of Birth</strong> ${user.dob}</p>
                     <p><strong>Phone Number:</strong> ${user.phone_number}</p>
                     <p><strong>Whatsapp Number:</strong> ${user.whatsapp}</p>
-                    <p><strong>Registration Number:</strong> ${user.reg_no}</p>
+                    <p><strong>Registration /Employee Number:</strong> ${user.reg_no}</p>
                     <p><strong>NIC:</strong> ${user.nic}</p>
                     <p><strong>Address Line 01:</strong> ${user.address_l1}</p>
                     <p><strong>Address Line 02:</strong> ${user.address_l2}</p>

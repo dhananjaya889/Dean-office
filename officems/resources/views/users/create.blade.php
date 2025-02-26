@@ -35,7 +35,7 @@
                             <input type="email" name="email"class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Registration Number</label>
+                            <label class="form-label">Registration / Employee Number</label>
                             <input type="text"name="reg_no" class="form-control" required>
                         </div>
                         <div class="mb-3">
@@ -103,8 +103,8 @@
                             </select></div>
                         <div class="mb-3"><label class="form-label">Married</label><select name="married"
                                 class="form-control">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select></div>
                         <div class="mb-3"><label class="form-label">Experience</label>
                             <textarea name="experience" class="form-control"></textarea>

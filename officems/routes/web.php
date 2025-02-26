@@ -57,6 +57,9 @@ Route::middleware([
     Route::get('/quartaz/user/{id}',[QuartazController::class,'getQuartazByUser'])->name('quartaz.user.view');
     Route::delete('/quartaz/item/delete/{id}', [QuartazItemController::class, 'destroy'])->name('quartazitem.delete');
     Route::delete('/quartaz/user/delete/{id}', [QuartazUserController::class, 'destroy'])->name('quartazuser.delete');
+    Route::get('/quartaz/{id}/edit', [QuartazController::class, 'edit'])->name('quartaz.edit');
+    Route::put('/quartaz/{id}', [QuartazController::class, 'update'])->name('quartaz.update');
+
     
 
     //items
@@ -79,12 +82,14 @@ Route::middleware([
     Route::post('medical/store_lec', [MedicalLecController::class, 'store'])->name('medical.store_lec');
     Route::get('medical/view_lec/{id}',[MedicalLecController::class,'show'])->name('medical.view_lec');
     Route::post('medical/chenge_status_lec/{id}',[MedicalLecController::class,'updateStatus'])->name('medical.chenge_status_lec');
+    Route::delete('/medical_lec/{id}',[MedicalLecController::class,'destroy'])->name('medical_lec.destroy');
 
     Route::get('medical_exam', [MedicalExamController::class, 'index'])->name('medical_exam');
     Route::get('medical/create_exam', [MedicalExamController::class,'create'])->name('medical.create_exam');
     Route::post('medical/store_exam', [MedicalExamController::class, 'store'])->name('medical.store_exam');
     Route::get('medical/view_exam/{id}',[MedicalExamController::class,'show'])->name('medical.view_exam');
     Route::post('medical/chenge_status_exam/{id}',[MedicalExamController::class,'updateStatus'])->name('medical.chenge_status_exam');
+    Route::delete('/medical_exam/{id}',[MedicalExamController::class,'destroy'])->name('medical_exam.destroy');
 
     //attendance
     Route::get('/attendance', [AtendanceController::class, 'index'])->name('attendance.index');

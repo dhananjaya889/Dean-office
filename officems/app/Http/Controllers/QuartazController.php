@@ -74,6 +74,39 @@ class QuartazController extends Controller
         return view('quartaz.view', compact('quartaz', 'items', 'user')); 
     }
 
+    public function edit($id)
+{
+    $quartaz = Quartaz::findOrFail($id);
+    return view('quartaz.update', compact('quartaz'));
+}
+
+public function update(Request $request, $id)
+{
+    // Validate the request data
+    $request->validate([
+        'num' => 'required|string|max:255',
+        'address' => 'required|string|max:255',
+        'description' =>  'required|string',
+        'status' => 'required|string|max:255',
+    ]);
+
+    // Find the quartaz by ID
+    $quartaz = Quartaz::findOrFail($id);
+
+    // Update the quartaz record
+    $quartaz->update([
+        'num' => $request->num,
+        'address' => $request->address,
+        'description' => $request->description,
+        'status' => $request->status,
+    ]);
+
+    // Redirect back with a success message
+    return redirect()->route('quartaz')->with('success', 'Quartaz updated successfully!');
+}
+
+
+
     public function destroy($id)
     {
         // Find the user by ID

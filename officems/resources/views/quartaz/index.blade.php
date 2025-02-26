@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Quartz')
+@section('title', 'Quarters')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Quartz</div>
+                <div class="card-header bg-primary text-white">Quarters</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -18,7 +18,7 @@
                         </div> --}}
                         <div class="col-sm-9"></div>
                         <div class="col-sm-3">
-                            <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quartz</a>
+                            <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quarters</a>
                         </div>
                     </div>
 
@@ -26,10 +26,10 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Quartaz Number</th>
-                                    <th>Quartaz Address</th>
-                                    <th>Quartaz Description</th>
-                                    <th>Quartaz Status</th>
+                                    <th>Quarters Number</th>
+                                    <th>Quarters Address</th>
+                                    <th>Quarters Description</th>
+                                    <th>Quarters Status</th>
                                 </tr>
                             </thead>
 
@@ -41,6 +41,7 @@
                                         <td>{{ $n->description }}</td>
                                         <td>{{ $n->status }}</td>
                                         <td><a class="btn btn-primary" href="{{ url('/quartaz/' . $n->id) }}">View</a></td>
+                                        <td><a href="{{ route('quartaz.edit', $n->id) }}" class="btn btn-primary">Edit</a></td>
                                         <td>
                                             <form action="{{ route('quartaz.destroy', $n->id) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this quartaz?')">

@@ -16,7 +16,8 @@
                         <div class="col-sm-9">
                         </div>
                         <div class="col-sm-3">
-                            <a href="{{ url('medical/create_exam') }}" class="btn btn-info">Submit medicals for Examination</a>
+                            <a href="{{ url('medical/create_exam') }}" class="btn btn-info">Submit medicals for
+                                Examination</a>
                         </div>
                     </div>
 
@@ -51,24 +52,30 @@
                                         <td>{{ $medical->degree_programe }}</td>
                                         <td>
                                             @if ($medical->medical_image)
-                                                <img src="{{asset($medical->medical_image)}}"
-                                                    alt="Medical Image" width="50">
+                                                <img src="{{ asset($medical->medical_image) }}" alt="Medical Image"
+                                                    width="50">
                                             @else
                                                 No Image
                                             @endif
                                         </td>
-                                        <td>{{$medical->status}}</td>
+                                        <td>{{ $medical->status }}</td>
                                         <td>
-                                            <a href="{{ url('medical/view_exam/'. $medical->id) }}"
+                                            <a href="{{ url('medical/view_exam/' . $medical->id) }}"
                                                 class="btn btn-primary btn-sm">View</a>
+                                        </td>
 
-                                            <form action="" method="POST"
-                                                style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure?');">Delete</button>
-                                            </form>
+                                        <td>
+                                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                                                <form action="{{ route('medical_exam.destroy', $medical->id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this medical?')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            @else
+                                                <button type="submit" class="btn btn-danger" disabled>Delete</button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

@@ -16,9 +16,9 @@ class BillController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $bills = Bill::paginate(10);
+            $bills = Bill::paginate(7);
         }else{
-            $bills = Bill::where('assign_user', Auth::user()->id)->paginate(10);
+            $bills = Bill::where('assign_user', Auth::user()->id)->paginate(7);
         }
 
         return view('bills.index',compact('bills'));

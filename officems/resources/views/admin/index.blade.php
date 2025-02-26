@@ -45,7 +45,7 @@
                         <strong>Experience:</strong> {{$user->experience}}
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>Reg No:</strong> {{$user->reg_no}}
+                        <strong>Reg/Emp No:</strong> {{$user->reg_no}}
                     </div>
                     <div class="col-md-6 mb-3">
                         <strong>Start Date:</strong> {{$user->start_date}}

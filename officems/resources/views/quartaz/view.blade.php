@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'View Quartz')
+@section('title', 'View Quarters')
 
 @section('content')
 <div class="container mt-4">
     <div class="card shadow-lg border-0">
         <div class="card-body">
             <h2 class="text-primary fw-bold text-center">
-                <i class="bi bi-gem"></i> Quartz Details
+                <i class="bi bi-gem"></i> Quarters Details
             </h2>
             <hr class="border-primary">
             
@@ -27,7 +27,7 @@
     <!-- Add Items Section -->
     <div class="card mt-4 shadow border-0">
         <div class="card-header bg-gradient text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(to right, #4e54c8, #8f94fb);">
-            <h5 class="mb-0"><i class="bi bi-plus-circle"></i> Add Quartz Items</h5>
+            <h5 class="mb-0"><i class="bi bi-plus-circle"></i> Add Quarters Items</h5>
             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                 <a href="{{ url('/quartaz/quartazitem/'.$quartaz->id) }}" class="btn btn-light btn-sm">
                     <i class="bi bi-plus-lg"></i> Add Items
@@ -79,7 +79,7 @@
     <!-- Add Lecture Section -->
     <div class="card mt-4 shadow border-0">
         <div class="card-header bg-gradient text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(to right, #ff7eb3, #ff758c);">
-            <h5 class="mb-0"><i class="bi bi-person-plus"></i> Add Lecture for Quartz</h5>
+            <h5 class="mb-0"><i class="bi bi-person-plus"></i> Add Lecture for Quarters</h5>
             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                 <a href="{{ url('/quartaz/quartazuser/'.$quartaz->id) }}" class="btn btn-light btn-sm">
                     <i class="bi bi-plus-lg"></i> Add Lecture

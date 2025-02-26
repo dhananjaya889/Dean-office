@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
-        return view('items.index',compact('items'));
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
+            $items = Item::paginate(5);
+        }else{
+            $items = Item::where('role', Auth::user()->role)->paginate(5);
+        }
+        
+        return view('items.index', compact('items'));
     }
 
     public function create()
