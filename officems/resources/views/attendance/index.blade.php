@@ -52,6 +52,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Emp No</th>
                 <th>Name</th>
                 <th>Present</th>
                 <th>Absent</th>
@@ -63,6 +64,7 @@
             @forelse($attendances as $attendance)
                 <tr>
                     <td>{{ $attendance->id }}</td>
+                    <td>{{ $attendance->emp_no }}</td>
                     <td>{{ $attendance->name }}</td>
                     <td>{{ $attendance->present }}</td>
                     <td>{{ $attendance->absent }}</td>

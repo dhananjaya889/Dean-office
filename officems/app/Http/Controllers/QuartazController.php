@@ -26,7 +26,7 @@ class QuartazController extends Controller
         $request->validate([
             'num' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'description' =>  'required|string',
+            'description' => 'required|string',
             'status' => 'required|string|max:255',
         ]);
 
@@ -58,7 +58,7 @@ class QuartazController extends Controller
 
         $quartaz = Quartaz::find($id);
         $items = QuartazItem::where('quartaz', $id)->join('items', 'quartaz_items.item_id', '=', 'items.id')->select('quartaz_items.*', 'items.name')->get();
-        $user = QuartazUser::where('quartaz_id', $id)->join('users', 'quartaz_users.user_id', '=', 'users.id')->select('quartaz_users.*','users.name','users.email','users.phone_number')->first();
+        $user = QuartazUser::where('quartaz_id', $id)->join('users', 'quartaz_users.user_id', '=', 'users.id')->select('quartaz_users.*', 'users.name', 'users.email', 'users.phone_number')->first();
 
         return view('quartaz.view', compact('quartaz', 'items', 'user'));
     }
@@ -69,41 +69,41 @@ class QuartazController extends Controller
         $qid = $qu->quartaz_id;
         $quartaz = Quartaz::find($qid);
         $items = QuartazItem::where('quartaz', $qid)->join('items', 'quartaz_items.item_id', '=', 'items.id')->select('quartaz_items.*', 'items.name')->get();
-        $user = QuartazUser::where('quartaz_id', $qid)->join('users', 'quartaz_users.user_id', '=', 'users.id')->select('quartaz_users.*','users.name','users.email','users.phone_number')->first();
+        $user = QuartazUser::where('quartaz_id', $qid)->join('users', 'quartaz_users.user_id', '=', 'users.id')->select('quartaz_users.*', 'users.name', 'users.email', 'users.phone_number')->first();
 
-        return view('quartaz.view', compact('quartaz', 'items', 'user')); 
+        return view('quartaz.view', compact('quartaz', 'items', 'user'));
     }
 
     public function edit($id)
-{
-    $quartaz = Quartaz::findOrFail($id);
-    return view('quartaz.update', compact('quartaz'));
-}
+    {
+        $quartaz = Quartaz::findOrFail($id);
+        return view('quartaz.update', compact('quartaz'));
+    }
 
-public function update(Request $request, $id)
-{
-    // Validate the request data
-    $request->validate([
-        'num' => 'required|string|max:255',
-        'address' => 'required|string|max:255',
-        'description' =>  'required|string',
-        'status' => 'required|string|max:255',
-    ]);
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'num' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|string|max:255',
+        ]);
 
-    // Find the quartaz by ID
-    $quartaz = Quartaz::findOrFail($id);
+        // Find the quartaz by ID
+        $quartaz = Quartaz::findOrFail($id);
 
-    // Update the quartaz record
-    $quartaz->update([
-        'num' => $request->num,
-        'address' => $request->address,
-        'description' => $request->description,
-        'status' => $request->status,
-    ]);
+        // Update the quartaz record
+        $quartaz->update([
+            'num' => $request->num,
+            'address' => $request->address,
+            'description' => $request->description,
+            'status' => $request->status,
+        ]);
 
-    // Redirect back with a success message
-    return redirect()->route('quartaz')->with('success', 'Quartaz updated successfully!');
-}
+        // Redirect back with a success message
+        return redirect()->route('quartaz')->with('success', 'Quartaz updated successfully!');
+    }
 
 
 

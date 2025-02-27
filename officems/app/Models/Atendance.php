@@ -13,5 +13,6 @@ class Atendance extends Model
         'month',
         'user_type',
         'file_path',
+        'emp_no',
     ];
 }

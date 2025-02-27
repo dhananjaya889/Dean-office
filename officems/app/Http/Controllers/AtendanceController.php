@@ -86,8 +86,9 @@ class AtendanceController extends Controller
                 continue;
             }
 
-            $name = $row[1];
-            $presenceData = array_slice($row, 2); 
+            $emp_no = $row[1];
+            $name = $row[2];
+            $presenceData = array_slice($row, 3); 
             // e.g. [1,0,1,1,1,0,...]
 
             $presentCount = 0;
@@ -115,6 +116,7 @@ class AtendanceController extends Controller
             // Save in DB
             Atendance::create([
                 'name' => $name,
+                'emp_no' => $emp_no,
                 'present' => $presentCount,
                 'absent'  => $absentCount,
                 'month'   => $request->month,    // "mm/yyyy"
@@ -150,12 +152,13 @@ class AtendanceController extends Controller
         $handle = fopen('php://temp', 'w');
 
         // Add header row
-        fputcsv($handle, ['ID', 'Name', 'Present', 'Absent', 'Month', 'User Type']);
+        fputcsv($handle, ['ID', 'Emp No','Name', 'Present', 'Absent', 'Month', 'User Type']);
 
         // Add data rows
         foreach ($attendances as $att) {
             fputcsv($handle, [
                 $att->id,
+                $att->emp_no,
                 $att->name,
                 $att->present,
                 $att->absent,
