@@ -8,14 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $items = Item::paginate(5);
-        }else{
-            $items = Item::where('role', Auth::user()->role)->paginate(5);
+        $query = Item::query();
+
+        if (Auth::user()->role !== 'admin' && Auth::user()->role !== 'staff') {
+            $query->where('role', Auth::user()->role);
         }
-        
+
+        if ($request->has('item_id')) {
+            $query->where('item_id', 'like', "%" . $request->item_id . "%");
+        }
+
+        if ($request->has('name')) {
+            $query->where('name', 'like', "%" . $request->name . "%");
+        }
+
+        $items = $query->paginate(5);
+
         return view('items.index', compact('items'));
     }
 
@@ -56,9 +66,15 @@ class ItemController extends Controller
 
     public function getItemsById($id)
     {
-        
+
         $items = Item::find($id);
         return view('items.view', compact('items'));
+    }
+
+    public function show($id)
+    {
+        $item = Item::with('quarter')->findOrFail($id);
+        return view('items.view', compact('item'));
     }
 
     public function destroy($id)

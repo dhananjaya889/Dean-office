@@ -28,6 +28,18 @@
                 <div class="mb-3">
                     <strong>Used Points:</strong> {{$bills->point}}
                 </div>
+                <div class="mb-3">
+                    <strong>Quarters Number:</strong> {{$bills->quartaz->num ?? 'N/A'}}
+                </div>
+                <div class="mb-3">
+                    <strong>User ID:</strong> {{$bills->user->reg_no ?? 'N/A'}}
+                </div>
+                <div class="mb-3">
+                    <strong>User Name:</strong> {{$bills->user->name ?? 'N/A'}}
+                </div>
+                <div class="mb-3">
+                    <strong>Contact Number:</strong> {{$bills->user->phone_number ?? 'N/A'}}
+                </div>                  
                 @if($bills->image)
                 <div class="text-center">
                     <img src="{{asset($bills->image)}}" alt="Bill Image" class="img-fluid rounded shadow-lg" style="max-width: 100%; height: auto;">

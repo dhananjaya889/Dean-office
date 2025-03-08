@@ -16,10 +16,16 @@
                         {{-- <div class="col-sm-6">
                             <input type="text" id="search" class="form-control mb-3" placeholder="Search quartaz...">
                         </div> --}}
-                        <div class="col-sm-9"></div>
+                        <div class="col-sm-6"></div>
                         <div class="col-sm-3">
                             <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quarters</a>
                         </div>
+                        <div class="col-sm-3">
+                            <a href="{{ route('previous_quartaz.index') }}" class="btn btn-warning">
+                                View Previous Quartaz
+                            </a>
+                        </div>
+
                     </div>
 
                     <div class="table-responsive">
@@ -41,7 +47,8 @@
                                         <td>{{ $n->description }}</td>
                                         <td>{{ $n->status }}</td>
                                         <td><a class="btn btn-primary" href="{{ url('/quartaz/' . $n->id) }}">View</a></td>
-                                        <td><a href="{{ route('quartaz.edit', $n->id) }}" class="btn btn-primary">Edit</a></td>
+                                        <td><a href="{{ route('quartaz.edit', $n->id) }}" class="btn btn-primary">Edit</a>
+                                        </td>
                                         <td>
                                             <form action="{{ route('quartaz.destroy', $n->id) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this quartaz?')">
@@ -56,7 +63,7 @@
                         </table>
                     </div>
                     <div id="paginationLinks">
-                            {{ $quartaz->links() }}
+                        {{ $quartaz->links() }}
                     </div>
 
                 </div>

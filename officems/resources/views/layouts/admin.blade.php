@@ -68,7 +68,7 @@
                         <li class="nav-item">
                             <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                 href="{{ url('/dashboard') }}" style="transition: all 0.3s ease;">
-                                <i class="bi bi-house"></i> <span>Dashboard</span>
+                                <i class="bi bi-house"></i> <span>User Profile</span>
                             </a>
                         </li>
 

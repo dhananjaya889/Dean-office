@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('title', 'Create Users')
 
 @section('content')
@@ -105,7 +106,8 @@
                                 class="form-control">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
-                            </select></div>
+                            </select>
+                        </div>
                         <div class="mb-3"><label class="form-label">Experience</label>
                             <textarea name="experience" class="form-control"></textarea>
                         </div>

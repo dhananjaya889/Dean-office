@@ -10,18 +10,36 @@ use App\Jobs\SendBillEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BillEmail;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PreviousBill;
+use App\Mail\BillPaidNotification;
 
 class BillController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
-            $bills = Bill::paginate(7);
-        }else{
-            $bills = Bill::where('assign_user', Auth::user()->id)->paginate(7);
+        $query = Bill::query();
+
+        if (Auth::user()->role !== 'admin' && Auth::user()->role !== 'staff') {
+            $query->where('assign_user', Auth::user()->id);
         }
 
-        return view('bills.index',compact('bills'));
+        // Apply filters if provided
+        if ($request->has('name') && $request->name != '') {
+            $query->where('name', $request->name);
+        }
+
+        if ($request->has('bill_id') && $request->bill_id != '') {
+            $query->where('bill_id', 'LIKE', '%' . $request->bill_id . '%');
+        }
+
+        // if ($request->has('assign_quartaz') && $request->assign_quartaz != '') {
+        //     $query->where('assign_quartaz', $request->assign_quartaz);
+        // }
+
+        $bills = $query->paginate(7);
+        $qua = Quartaz::all(); // Fetch Quartaz data for filtering
+
+        return view('bills.index', compact('bills', 'qua'));
     }
 
     public function create()
@@ -49,10 +67,10 @@ class BillController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploads/bills'), $imageName);
 
-            $imagePath = 'uploads/bills/'.$imageName;
+            $imagePath = 'uploads/bills/' . $imageName;
         }
 
 
@@ -74,7 +92,7 @@ class BillController extends Controller
             $user = User::find($request->assign_user);
 
             if ($user && $user->email) {
-                Mail::to($user->email)->send(new BillEmail($request,  $imagePath));
+                Mail::to($user->email)->send(new BillEmail($request, $imagePath));
             }
         }
 
@@ -102,13 +120,68 @@ class BillController extends Controller
         return view('bills.view', compact('bills'));
     }
 
+    public function show($id)
+    {
+        $bill = Bill::with('user')->findOrFail($id);
+        return view('view', compact('bill'));
+    }
+
+    public function previousBills()
+    {
+        $previousBills = PreviousBill::paginate(7);  // Paginate the previous bills
+        return view('bills.previous', compact('previousBills'));
+    }
+
+    // public function complete(Request $request, $id)
+    // {
+    //     $bill = Bill::findOrFail($id);
+
+    //     // Ensure only the assigned user can complete the bill
+    //     if (Auth::user()->id !== $bill->assign_user) {
+    //         return redirect()->back()->with('error', 'Unauthorized action.');
+    //     }
+
+    //     // Validate the uploaded file
+    //     $request->validate([
+    //         'payment_slip' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+    //     ]);
+
+    //     // Store the payment slip
+    //     $path = $request->file('payment_slip')->store('payment_slips', 'public');
+
+    //     // Update the bill status
+    //     $bill->update([
+    //         'payment_slip' => $path,
+    //         'is_paid' => true
+    //     ]);
+
+    //     // Send an email to the admin or assigned lecturer
+    //     $admin = User::where('role', 'admin')->first();
+    //     Mail::to($admin->email)->send(new BillPaidNotification($bill));
+
+    //     return redirect()->back()->with('success', 'Bill payment completed successfully!');
+    // }
+
     public function destroy($id)
     {
-        // Find the user by ID
-        $bills = Bill::findOrFail($id);
+        // Find the bill to be deleted
+        $bill = Bill::findOrFail($id);
 
-        // Delete the user
-        $bills->delete();
+        // Move the bill to the previous_bills table
+        PreviousBill::create([
+            'name' => $bill->name,
+            'bill_id' => $bill->bill_id,
+            'date' => $bill->date,
+            'month' => $bill->month,
+            'amount' => $bill->amount,
+            'point' => $bill->point,
+            'image' => $bill->image,
+            'assign_user' => $bill->assign_user,
+            'assign_quartaz' => $bill->assign_quartaz,
+        ]);
+
+        // Delete the bill from the bills table
+        $bill->delete();
 
         // Redirect back with success message
         return redirect()->route('bills')->with('success', 'Bill deleted successfully!');

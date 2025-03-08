@@ -19,6 +19,9 @@
                 <div class="mb-3">
                     <strong>Description:</strong> {{$items->description}}
                 </div>
+                <div class="mb-3">
+                    <strong>Quarters Number:</strong> {{ $items->quartaz ? $items->quartaz->num : 'Not Assigned' }}
+                </div>
             </div>
             <div class="card-footer text-center">
                 <a href="{{ route('items') }}" class="btn btn-secondary">Back to Items</a>

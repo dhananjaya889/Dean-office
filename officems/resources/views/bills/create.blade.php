@@ -74,16 +74,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Assign to a user</label>
-                        <select name="assign_user" id="" class="form-control">
-                            <option value="">-- Select a user --</option>
-                            @foreach ($users as $u)
-                                <option value="{{$u->id}}">{{$u->name}} - {{$u->email}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
                         <label class="form-label">Asign to a quartaz</label>
                         <select name="assign_quartaz" id="" class="form-control">
                             <option value="">-- Select a Quartaz --</option>
@@ -93,6 +83,15 @@
                         </select>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Assign to a user</label>
+                        <select name="assign_user" id="" class="form-control">
+                            <option value="">-- Select a user --</option>
+                            @foreach ($users as $u)
+                                <option value="{{$u->id}}">{{$u->name}} - {{$u->email}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <button type="submit" class="btn btn-success w-100">Add Bill</button>
                 </form>

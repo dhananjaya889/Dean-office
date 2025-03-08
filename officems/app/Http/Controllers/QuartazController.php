@@ -6,6 +6,7 @@ use App\Models\Quartaz;
 use App\Models\QuartazItem;
 use App\Models\QuartazUser;
 use Illuminate\Http\Request;
+use App\Models\PreviousQuartaz;
 
 class QuartazController extends Controller
 {
@@ -105,18 +106,36 @@ class QuartazController extends Controller
         return redirect()->route('quartaz')->with('success', 'Quartaz updated successfully!');
     }
 
+    public function previous()
+    {
+        $previous_quartaz = PreviousQuartaz::all();
+        return view('quartaz.previous', compact('previous_quartaz'));
+    }
 
+    public function show($id)
+    {
+        $quartaz = Quartaz::findOrFail($id);
+        $previous_quartaz = PreviousQuartaz::all();
+
+        return view('quartaz.view', compact('quartaz', 'previous_quartaz'));
+    }
 
     public function destroy($id)
     {
-        // Find the user by ID
         $quartaz = Quartaz::findOrFail($id);
 
-        // Delete the user
+        // Save details in previous_quartaz table before deletion
+        PreviousQuartaz::create([
+            'num' => $quartaz->num,
+            'address' => $quartaz->address,
+            'description' => $quartaz->description,
+            'status' => $quartaz->status,
+        ]);
+
+        // Delete the quartaz record
         $quartaz->delete();
 
-        // Redirect back with success message
-        return redirect()->route('quartaz')->with('success', 'Quartz deleted successfully!');
+        return redirect()->route('quartaz.index')->with('success', 'Quartaz moved to previous records successfully.');
     }
 }
 
