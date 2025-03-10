@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('previous_quartazs', function (Blueprint $table) {
+        Schema::create('paybills', function (Blueprint $table) {
             $table->id();
-            $table->string('quartaz_id');
             $table->string('user_id');
+            $table->integer('amount');
+            $table->string('bill_id');
+            $table->string('ref_id');
+            $table->string('image');
+            $table->string('bill_name');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('previous_quartaz');
+        Schema::dropIfExists('paybills');
     }
 };

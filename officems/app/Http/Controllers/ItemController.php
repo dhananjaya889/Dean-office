@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\PreviousItem;
+use App\Models\QuartazItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,7 +70,8 @@ class ItemController extends Controller
     {
 
         $items = Item::find($id);
-        return view('items.view', compact('items'));
+        $qua = QuartazItem::join('quartaz', 'quartaz_items.quartaz', 'quartaz.id')->where('quartaz_items.item_id', $id)->select('quartaz.num')->first();
+        return view('items.view', compact('items', 'qua'));
     }
 
     public function show($id)
@@ -77,15 +80,28 @@ class ItemController extends Controller
         return view('items.view', compact('item'));
     }
 
+    public function previous()
+    {
+        $previous_items = PreviousItem::paginate(7);
+        return view('items.previous', compact('previous_items'));
+    }
+
     public function destroy($id)
     {
         // Find the user by ID
         $items = Item::findOrFail($id);
+        $qitems = QuartazItem::join('quartaz', 'quartaz_items.quartaz','quartaz.id')->first();
 
-        // Delete the user
+        PreviousItem::create([
+            'item_id' => $items->item_id,
+            'name' => $items->name,
+            'item_add_date' => $items->created_at,
+            'description' => $items->description,
+            'quartaz_num' => $qitems->num,
+        ]);
+
         $items->delete();
 
-        // Redirect back with success message
         return redirect()->route('items')->with('success', 'Item deleted successfully!');
     }
 }

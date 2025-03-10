@@ -25,7 +25,8 @@ class QuartazItemController extends Controller
 
         QuartazItem::create($request->all());
 
-        return back();
+        return redirect()->route('quartaz.show', ['id' => $request->quartaz]);
+
 
 
     }

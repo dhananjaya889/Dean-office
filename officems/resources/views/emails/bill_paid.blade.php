@@ -1,13 +1,14 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Bill Payment Completed</title>
 </head>
 <body>
     <p>Dear Admin,</p>
-    <p>The bill <strong>{{ $bill->name }}</strong> (ID: {{ $bill->bill_id }}) has been paid.</p>
-    <p>Payment Slip: <a href="{{ asset('storage/' . $bill->payment_slip) }}">View Slip</a></p>
+    <p>The bill ID: {{ $data['bill_id'] }} has been paid by {{$data['user']}}.</p>
+    <p>Amout is <b>{{$data['amount']}}</b></p>
+    <p>Ref id  <b>{{$data['ref_id']}}</b></p>
     <p>Best regards,</p>
     <p>Your System</p>
 </body>
-</html> --}}
+</html>

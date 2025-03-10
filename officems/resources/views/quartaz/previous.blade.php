@@ -1,3 +1,8 @@
+@extends('layouts.admin')
+
+@section('title', 'Quarters')
+
+@section('content')
 <!-- Previous Quarters Table -->
 <div class="card mt-4 shadow border-0">
     <div class="card-header bg-dark text-white">
@@ -9,18 +14,20 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Registration Number</th>
-                        <th>Address</th>
-                        <th>Description</th>
-                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>User Register Number</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($previous_quartaz as $pq)
                         <tr>
-                            <td>{{ $pq->num }}</td>
-                            <td>{{ $pq->address }}</td>
-                            <td>{{ $pq->description }}</td>
-                            <td>{{ $pq->status }}</td>
+                            <td>{{ $pq->quartaz_id }}</td>
+                            <td>{{ $pq->name }}</td>
+                            <td>{{ $pq->email }}</td>
+                            <td>{{ $pq->reg_no }}</td>
+                            
                         </tr>
                     @endforeach
                 </tbody>
@@ -28,3 +35,5 @@
         </div>
     </div>
 </div>
+
+@endsection

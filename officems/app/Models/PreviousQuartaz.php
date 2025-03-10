@@ -9,8 +9,11 @@ class PreviousQuartaz extends Model
 {
     use HasFactory;
 
-    protected $table = 'previous_quartaz';
+    protected $table = 'previous_quartazs';
 
-    protected $fillable = ['num', 'address', 'description', 'status'];
+    protected $fillable = [
+        'quartaz_id',
+        'user_id'
+    ];
 }
 

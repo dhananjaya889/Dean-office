@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quartaz;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\QuartazUser;
@@ -33,12 +34,13 @@ class QuartazUserController extends Controller
         QuartazUser::create($request->all());
 
         $user = User::find($request->user_id);
+        $qua = Quartaz::find($request->quartaz_id);
 
         if ($user) {
-            Mail::to($user->email)->send(new QuartazUserAddedMail());
+            Mail::to($user->email)->send(new QuartazUserAddedMail($qua));
         }
 
-        return back();
+        return redirect()->route('quartaz.show', ['id' => $request->quartaz_id]);
 
     }
 

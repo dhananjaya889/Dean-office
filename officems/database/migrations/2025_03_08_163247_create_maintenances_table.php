@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('previous_quartazs', function (Blueprint $table) {
+        Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->string('quartaz_id');
             $table->string('user_id');
+            $table->string('item_id')->nullable();
+            $table->string('description');
+            $table->string('image');
+            $table->string('admin_approve');
+            $table->string('mainten_status');
+            $table->string('maintenance_description')->nullable();
+            $table->string('user_status');
             $table->timestamps();
         });
     }
@@ -24,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('previous_quartaz');
+        Schema::dropIfExists('maintenances');
     }
 };

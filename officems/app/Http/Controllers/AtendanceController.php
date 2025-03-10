@@ -9,29 +9,59 @@ use Illuminate\Support\Facades\Storage;
 class AtendanceController extends Controller
 {
     public function index(Request $request)
-    {
-        // Retrieve filter parameters
-        $month = $request->get('month');      // "mm/yyyy"
-        $userType = $request->get('user_type'); // "lectures" or "demostrators"
+{
+    // Retrieve filter parameters
+    $month = $request->get('month'); // "yyyy-mm"
+    $userType = $request->get('user_type'); // "lectures" or "demonstrators"
 
-        // Build query
-        $query = Atendance::query();
+    // Build query
+    $query = Atendance::query();
 
-        if ($month) {
-            $query->where('month', $month);
-        }
-        if ($userType) {
-            $query->where('user_type', $userType);
-        }
+    if ($month) {
+        // Extract the month and year from the database format "dd/mm/yyyy"
+        $parsedMonth = \Carbon\Carbon::createFromFormat('Y-m', $month);
+        $monthNumber = $parsedMonth->format('m'); // Extract "03"
+        $yearNumber = $parsedMonth->format('Y'); // Extract "2025"
 
-        // Get results
-        $attendances = $query->paginate(10);
-
-        // Distinct months for dropdown (optional)
-        $months = Atendance::select('month')->distinct()->pluck('month');
-        
-        return view('attendance.index', compact('attendances', 'month', 'userType', 'months'));
+        $query->whereRaw("STR_TO_DATE(month, '%d/%m/%Y') BETWEEN ? AND ?", [
+            "{$yearNumber}-{$monthNumber}-01",
+            "{$yearNumber}-{$monthNumber}-31"
+        ]);
     }
+
+    if ($userType) {
+        $query->where('user_type', $userType);
+    }
+
+    // Get results
+    $attendances = $query->get();
+
+  
+    $data = [];
+
+    foreach ($attendances as $a) {
+        // Determine the present value
+        $c = ($a->present == 2) ? 1 : 0.5;
+
+        // Check if employee record already exists in the array
+        if (isset($data[$a->emp_no])) {
+            $data[$a->emp_no]['present'] += $c;
+        } else {
+            $data[$a->emp_no] = [
+                'id' => $a->id,
+                'emp_no' => $a->emp_no,
+                'name' => $a->name,
+                'present' => $c,
+                'user_type' => $a->user_type
+            ];
+        }
+    }
+
+    // Distinct months for dropdown (optional)
+    $months = Atendance::select('month')->distinct()->pluck('month');
+
+    return view('attendance.index', compact('data', 'month', 'userType', 'months'));
+}
 
     /**
      * Show form for uploading CSV.
@@ -69,17 +99,7 @@ class AtendanceController extends Controller
 
         // We'll parse each row, count present=1, absent=0
         foreach ($data as $row) {
-            // Example CSV structure:
-            // row = [id, name, week1, week2, ..., weekN]
-            // You can adjust the indices to match your CSV
-
-            // ID => $row[0] 
-            // name => $row[1]
-            // subsequent columns => presence data (1/0)
-
-            // If your CSV has variable columns, handle carefully:
-            // Let's assume the first two columns are id, name
-            // and the rest are presence data.
+            
 
             if (count($row) < 3) {
                 // Skip invalid row
@@ -88,38 +108,36 @@ class AtendanceController extends Controller
 
             $emp_no = $row[1];
             $name = $row[2];
-            $presenceData = array_slice($row, 3); 
+            $in = $row[3];
+            $out = $row[4];
+            // $presenceData = array_slice($row, 3); 
             // e.g. [1,0,1,1,1,0,...]
+            list($outHours, $outMinutes) = explode(":", $out);
+            list($inHours, $inMinutes) = explode(":", $in);
+            
+            $minIn = ($inHours * 60) + $inMinutes;
+            $minOut = ($outHours * 60) + $outMinutes;
 
+            $tdif = $minOut - $minIn;
+
+
+            $count = $tdif/60;
             $presentCount = 0;
-            $absentCount  = 0;
 
-            foreach ($presenceData as $value) {
-                // Trim whitespace and check if the value is empty
-                $trimmedValue = trim($value);
-            
-                if ($trimmedValue === "") {
-                    // Ignore empty values (do not count as present or absent)
-                    continue;
-                }
-            
-                // Convert to integer
-                $value = (int) $trimmedValue;
-            
-                if ($value === 1) {
-                    $presentCount++;
-                } elseif ($value === 0) {
-                    $absentCount++;
-                }
+            info(round($count));
+            if(round($count) >= 8){ 
+                $presentCount = 2;
+            }else{
+                $presentCount = 1;
             }
+            info($presentCount);
 
             // Save in DB
             Atendance::create([
                 'name' => $name,
                 'emp_no' => $emp_no,
                 'present' => $presentCount,
-                'absent'  => $absentCount,
-                'month'   => $request->month,    // "mm/yyyy"
+                'month'   => $request->month,  
                 'user_type' => $request->user_type, 
                 'file_path' => $path,
             ]);
@@ -152,7 +170,7 @@ class AtendanceController extends Controller
         $handle = fopen('php://temp', 'w');
 
         // Add header row
-        fputcsv($handle, ['ID', 'Emp No','Name', 'Present', 'Absent', 'Month', 'User Type']);
+        fputcsv($handle, ['ID', 'Emp No','Name', 'Present', 'Month', 'User Type']);
 
         // Add data rows
         foreach ($attendances as $att) {
@@ -161,7 +179,6 @@ class AtendanceController extends Controller
                 $att->emp_no,
                 $att->name,
                 $att->present,
-                $att->absent,
                 $att->month,
                 $att->user_type,
             ]);

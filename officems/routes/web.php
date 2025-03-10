@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MedicalExamController;
 use App\Http\Controllers\MedicalLecController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\PaybillController;
 use App\Http\Controllers\QuartazController;
 use App\Http\Controllers\QuartazItemController;
 use App\Http\Controllers\QuartazUserController;
@@ -71,7 +73,8 @@ Route::middleware([
     Route::get('/items/{id}/{name}', [ItemController::class, 'getItemsById'])->name('items.show');
     Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
-    Route::get('/previous-items/pdf', [ItemController::class, 'downloadPdf'])->name('previous-items.pdf');
+    Route::get('previous_items',[ItemController::class, 'previous'])->name('previous_items.index');
+    Route::get('/previous_items/download', [ItemController::class, 'downloadPdf'])->name('previous_items.download');
 
     //bills
     Route::get('/bills', [BillController::class, 'index'])->name('bills.index');
@@ -88,6 +91,12 @@ Route::middleware([
     
     // Route::post('/bills/{id}/complete', [BillController::class, 'complete'])->name('bills.complete');
 
+    //paybills
+    Route::get('/paybills',[PaybillController::class, 'index'])->name('paybills.index');
+    Route::get('/paybills/create', [PaybillController::class, 'create'])->name('paybills.create');
+    Route::post('/paybills/store', [PaybillController::class, 'store'])->name('paybills.store');
+    Route::get('paybills/{id}', [PaybillController::class, 'getPaybillsById'])->name('paybills.show');
+    Route::delete('/paybills/{id}', [PaybillController::class, 'destroy'])->name('paybills.destroy');
 
     // medicals
     Route::get('medical_lec', [MedicalLecController::class, 'index'])->name('medical_lec');
@@ -110,11 +119,20 @@ Route::middleware([
     Route::post('/attendance', [AtendanceController::class, 'store'])->name('attendance.store');
     Route::get('/attendance/download', [AtendanceController::class, 'download'])->name('attendance.download');
 
+    // maintenance
+    Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance');
+    Route::get('/maintenance/create', [MaintenanceController::class, 'create'])->name('maintenance.create');
+    Route::post('/maintenance/store', [MaintenanceController::class, 'store'])->name('maintenance.store');
+    Route::get('/maintenance/edit/{m}', [MaintenanceController::class, 'edit'])->name('maintenance.edit');
+    Route::put('/maintenance/update/{id}', [MaintenanceController::class, 'update'])->name('maintenance.update');
+    Route::get('/maintenance/{id}', [MaintenanceController::class, 'getMaintenanceById'])->name('maintenance.show');
+    Route::delete('/maintenance/{id}', [MaintenanceController::class, 'destroy'])->name('maintenance.destroy');
+
     //subjects
-    Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
-    Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
-    Route::post('/subjects/store', [SubjectController::class, 'store'])->name('subjects.store');
-    Route::get('/subjects/{id}/{subject_name}', [SubjectController::class, 'getSubjectById'])->name('subjects.show');
-    Route::delete('/subjects/{id}', [SubjectController::class, 'destroy'])->name('subjects.destroy');
+    // Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
+    // Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
+    // Route::post('/subjects/store', [SubjectController::class, 'store'])->name('subjects.store');
+    // Route::get('/subjects/{id}/{subject_name}', [SubjectController::class, 'getSubjectById'])->name('subjects.show');
+    // Route::delete('/subjects/{id}', [SubjectController::class, 'destroy'])->name('subjects.destroy');
 
 });

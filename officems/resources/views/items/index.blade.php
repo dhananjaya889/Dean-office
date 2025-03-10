@@ -13,20 +13,27 @@
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
                     <form method="GET" action="{{ route('items') }}" class="mb-3">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-md-3">
-                                <input type="text" name="item_id" class="form-control" placeholder="Search by Item ID" value="{{ request('item_id') }}">
+                                <label class="form-label">Item ID</label>
+                                <input type="text" name="item_id" class="form-control" value="{{ request('item_id') }}">
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" name="name" class="form-control" placeholder="Search by Name" value="{{ request('name') }}">
+                            <div class="col-md-2">
+                                <label class="form-label">Item Name</label>
+                                <input type="text" name="name" class="form-control" value="{{ request('name') }}">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2 d-flex align-items-end">
                                 <button type="submit" class="btn btn-primary">Filter</button>
-                                <a href="{{ route('items') }}" class="btn btn-secondary">Reset</a>
+                                <a href="{{ route('items') }}" class="btn btn-secondary ms-2">Reset</a>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-md-2 d-flex align-items-end">
                                 <a href="{{ url('/items/create') }}" class="btn btn-info">Add Items</a>
                             </div>
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                            <div class="col-sm-2 d-flex align-items-end">
+                                <a href="{{ route('previous_items.index') }}" class="btn btn-warning">Previous Items</a>
+                            </div>
+                        @endif
                         </div>
                     </form>
                     

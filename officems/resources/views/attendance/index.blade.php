@@ -16,14 +16,15 @@
         <!-- Month -->
         <div class="col-auto">
             <label for="month" class="visually-hidden">Month</label>
-            <select name="month" id="month" class="form-select">
-                <option value="">All Months</option>
+            <input type="month" name="month" id="month" class="form-control" value="{{$month}}">
+            {{-- <select name="month" id="month" class="form-select">
+                <option value="">All Months</option> 
                 @foreach($months as $m)
                     <option value="{{ $m }}" {{ (request('month') == $m) ? 'selected' : '' }}>
                         {{ $m }}
                     </option>
                 @endforeach
-            </select>
+            </select> --}}
         </div>
         <!-- User Type -->
         <div class="col-auto">
@@ -55,21 +56,17 @@
                 <th>Emp No</th>
                 <th>Name</th>
                 <th>Present</th>
-                <th>Absent</th>
-                <th>Month</th>
                 <th>User Type</th>
             </tr>
         </thead>
         <tbody>
-            @forelse($attendances as $attendance)
+            @forelse($data as $d)
                 <tr>
-                    <td>{{ $attendance->id }}</td>
-                    <td>{{ $attendance->emp_no }}</td>
-                    <td>{{ $attendance->name }}</td>
-                    <td>{{ $attendance->present }}</td>
-                    <td>{{ $attendance->absent }}</td>
-                    <td>{{ $attendance->month }}</td>
-                    <td>{{ $attendance->user_type }}</td>
+                    <td>{{ $d['id'] }}</td>
+                    <td>{{ $d['emp_no'] }}</td>
+                    <td>{{ $d['name'] }}</td>
+                    <td>{{ $d['present'] }}</td>
+                    <td>{{ $d['user_type'] }}</td>
                 </tr>
             @empty
                 <tr>
@@ -79,8 +76,8 @@
         </tbody>
     </table>
 </div>
-<div id="paginationLinks">
+{{-- <div id="paginationLinks">
     {{ $attendances->links() }}
-</div>
+</div> --}}
 
 @endsection

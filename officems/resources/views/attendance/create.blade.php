@@ -16,8 +16,8 @@
 
         <!-- Month (mm/yyyy) -->
         <div class="mb-3">
-            <label for="month" class="form-label">Month (mm/yyyy)</label>
-            <input type="text" class="form-control" id="month" name="month" placeholder="02/2025" required>
+            <label for="month" class="form-label">Month (dd/mm/yyyy)</label>
+            <input type="text" class="form-control" id="month" name="month" placeholder="05/02/2025" required>
         </div>
 
         <!-- User Type -->

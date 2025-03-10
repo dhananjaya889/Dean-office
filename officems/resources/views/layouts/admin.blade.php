@@ -32,7 +32,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- Brand -->
-                <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0 logo_image" href="{{ url('/') }}">
+                <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0 logo_image" href="">
                     <img src="{{ asset('img/uni.png') }}" alt="logo" class="" width="45px" height="auto">
                     <p>Office Management</p>
                 </a>
@@ -66,7 +66,7 @@
                     <!-- Navigation -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                            <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                 href="{{ url('/dashboard') }}" style="transition: all 0.3s ease;">
                                 <i class="bi bi-house"></i> <span>User Profile</span>
                             </a>
@@ -75,18 +75,18 @@
 
                         @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                             <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('users') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-people"></i> <span>Users</span>
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('notices') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-chat"></i> <span>Notices</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 rounded-pill text-white bg-dark shadow-sm"
@@ -104,12 +104,21 @@
                                         </a></li>
                                 </ul>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('bills') }}" style="transition: all 0.3s ease;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 px-3 py-2 rounded-pill text-white bg-info shadow-sm"
+                                    href="#" id="quartzDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false" style="transition: all 0.3s ease;">
                                     <i class="bi bi-credit-card-2-back-fill"></i> <span>Utility Bills</span>
                                 </a>
+                                <ul class="dropdown-menu border-0 shadow-lg rounded-3 animate__animated animate__fadeIn"
+                                    aria-labelledby="quartzDropdown">
+                                    <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('bills') }}">
+                                            <i class="bi bi-receipt-cutoff"></i> Bills Overview
+                                        </a></li>
+                                    <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('paybills') }}">
+                                            <i class="bi bi-cash"></i> Pay Bills
+                                        </a></li>
+                                </ul>
                             </li>
 
                             <li class="nav-item">
@@ -139,15 +148,22 @@
                                     <i class="bi bi-file-medical-fill"></i> <span>Add Attendance</span>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
+                                    href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
+                                    <i class="bi bi-hammer"></i> <span>Maintenance</span>
+                                </a>
+                            </li>
                         @endif
 
                         @if (Auth::user()->role == 'lecture')
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('notices') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-chat"></i> <span>Notices</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('/quartaz/user/' . Auth::user()->id) }}"
@@ -160,17 +176,23 @@
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('bills') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-credit-card-2-back-fill"></i> <span>Utility Bills</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                                    href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
+                                    <i class="bi bi-hammer"></i> <span>Maintenance</span>
                                 </a>
                             </li>
                         @endif
 
                         @if (Auth::user()->role == 'temporary-demostrator')
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('notices') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-chat"></i> <span>Notices</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('/quartaz/user/' . Auth::user()->id) }}"
@@ -185,9 +207,15 @@
                                     <i class="bi bi-credit-card-2-back-fill"></i> <span>Utility Bills</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                                    href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
+                                    <i class="bi bi-hammer"></i> <span>Maintenance</span>
+                                </a>
+                            </li>
                         @endif
 
-                        @if (Auth::user()->role == 'student')
+                        {{-- @if (Auth::user()->role == 'student')
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('notices') }}" style="transition: all 0.3s ease;">
@@ -206,6 +234,15 @@
                                     <i class="bi bi-file-medical-fill"></i> <span>Exam Medicals</span>
                                 </a>
                             </li>
+                        @endif --}}
+                        
+                        @if (Auth::user()->role == 'maintenance')
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
+                                href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
+                                <i class="bi bi-hammer"></i> <span>Maintenance</span>
+                            </a>
+                        </li>
                         @endif
 
                     </ul>
@@ -260,7 +297,7 @@
                                 <h1 class="h2 mb-0 ls-tight">@yield('title')</h1>
                             </div>
                             <!-- Actions -->
-                            <div class="col-sm-6 col-12 text-sm-end">
+                            <div class="col-sm-5 col-12 text-sm-end">
                                 <div class="mx-n1">
                                     <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
@@ -270,18 +307,6 @@
                                             <span class="avatar-child avatar-badge bg-success"></span>
                                         </div>
                                     </a>
-                                    {{-- <a href="#" class="btn d-inline-flex btn-sm btn-neutral border-base mx-1">
-                                        <span class=" pe-2">
-                                            <i class="bi bi-pencil"></i>
-                                        </span>
-                                        <span>Edit</span>
-                                    </a>
-                                    <a href="#" class="btn d-inline-flex btn-sm btn-primary mx-1">
-                                        <span class=" pe-2">
-                                            <i class="bi bi-plus"></i>
-                                        </span>
-                                        <span>Create</span>
-                                    </a> --}}
                                 </div>
                             </div>
                         </div>
@@ -297,169 +322,6 @@
                 <div class="container-fluid">
 
                     @yield('content')
-
-                    <!-- Card stats -->
-                    {{-- <div class="row g-6 mb-6">
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card shadow border-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                            <span class="h3 font-bold mb-0">$750.90</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                                <i class="bi bi-credit-card"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 mb-0 text-sm">
-                                        <span class="badge badge-pill bg-soft-success text-success me-2">
-                                            <i class="bi bi-arrow-up me-1"></i>13%
-                                        </span>
-                                        <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card shadow border-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">New projects</span>
-                                            <span class="h3 font-bold mb-0">215</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-                                                <i class="bi bi-people"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 mb-0 text-sm">
-                                        <span class="badge badge-pill bg-soft-success text-success me-2">
-                                            <i class="bi bi-arrow-up me-1"></i>30%
-                                        </span>
-                                        <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card shadow border-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total hours</span>
-                                            <span class="h3 font-bold mb-0">1.400</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
-                                                <i class="bi bi-clock-history"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 mb-0 text-sm">
-                                        <span class="badge badge-pill bg-soft-danger text-danger me-2">
-                                            <i class="bi bi-arrow-down me-1"></i>-5%
-                                        </span>
-                                        <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card shadow border-0">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Work load</span>
-                                            <span class="h3 font-bold mb-0">95%</span>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                                <i class="bi bi-minecart-loaded"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 mb-0 text-sm">
-                                        <span class="badge badge-pill bg-soft-success text-success me-2">
-                                            <i class="bi bi-arrow-up me-1"></i>10%
-                                        </span>
-                                        <span class="text-nowrap text-xs text-muted">Since last month</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow border-0 mb-7">
-                        <div class="card-header">
-                            <h5 class="mb-0">Applications</h5>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover table-nowrap">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Company</th>
-                                        <th scope="col">Offer</th>
-                                        <th scope="col">Meeting</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
-                                            <a class="text-heading font-semibold" href="#">
-                                                Robert Fox
-                                            </a>
-                                        </td>
-                                        <td>
-                                            Feb 15, 2021
-                                        </td>
-                                        <td>
-                                            <img alt="..." src="https://preview.webpixels.io/web/img/other/logos/logo-1.png" class="avatar avatar-xs rounded-circle me-2">
-                                            <a class="text-heading font-semibold" href="#">
-                                                Dribbble
-                                            </a>
-                                        </td>
-                                        <td>
-                                            $3.500
-                                        </td>
-                                        <td>
-                                            <span class="badge badge-lg badge-dot">
-                                                <i class="bg-success"></i>Scheduled
-                                            </span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-neutral">View</a>
-                                            <button type="button" class="btn btn-sm btn-square btn-neutral text-danger-hover">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img alt="..." src="https://images.unsplash.com/photo-1610271340738-726e199f0258?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
-                                            <a class="text-heading font-semibold" href="#">
-                                                Darlene Robertson
-                                            </a>
-                                        </td>
-                                        <td>
-                                            Apr 15, 2021
-                                        </td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer border-0 py-5">
-                            <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
-                        </div>
-                    </div> --}}
                 </div>
             </main>
         </div>

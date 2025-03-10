@@ -32,11 +32,7 @@ class BillController extends Controller
             $query->where('bill_id', 'LIKE', '%' . $request->bill_id . '%');
         }
 
-        // if ($request->has('assign_quartaz') && $request->assign_quartaz != '') {
-        //     $query->where('assign_quartaz', $request->assign_quartaz);
-        // }
-
-        $bills = $query->paginate(7);
+        $bills = $query->paginate(6);
         $qua = Quartaz::all(); // Fetch Quartaz data for filtering
 
         return view('bills.index', compact('bills', 'qua'));
@@ -96,7 +92,7 @@ class BillController extends Controller
             }
         }
 
-        return redirect()->route('bills')->with('success', 'Bill added successfully!');
+        return redirect()->route('bills.index')->with('success', 'Bill added successfully!');
     }
 
     public function getBills(Request $request)
@@ -184,6 +180,6 @@ class BillController extends Controller
         $bill->delete();
 
         // Redirect back with success message
-        return redirect()->route('bills')->with('success', 'Bill deleted successfully!');
+        return redirect()->route('bills.index')->with('success', 'Bill deleted successfully!');
     }
 }

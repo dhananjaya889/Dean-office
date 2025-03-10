@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('previous_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('item_id');
+            $table->string('item_id');
             $table->string('name');
-            $table->date('item_add_date');
+            $table->string('item_add_date');
             $table->text('description');
-            $table->integer('quartaz_num')->nullable();
+            $table->string('quartaz_num')->nullable();
             $table->timestamps();
         });
     }

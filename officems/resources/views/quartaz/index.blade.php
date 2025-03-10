@@ -12,21 +12,39 @@
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
-                    <div class="row">
-                        {{-- <div class="col-sm-6">
-                            <input type="text" id="search" class="form-control mb-3" placeholder="Search quartaz...">
-                        </div> --}}
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-3">
-                            <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quarters</a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="{{ route('previous_quartaz.index') }}" class="btn btn-warning">
-                                View Previous Quartaz
-                            </a>
-                        </div>
 
-                    </div>
+                    <form method="GET" action="{{ route('quartaz') }}" class="mb-3">
+                        <div class="row mb-2">
+                            <div class="col-md-3">
+                                <label class="form-label">Quarters Number</label>
+                                <input type="text" name="num" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Quarters Status</label>
+                                <select name="status" class="form-control" >
+                                    <option value=""> --- Status --- </option>
+                                    <option value="selected">Selected</option>
+                                    <option value="unselected">Unselected</option>
+                                    <option value="selected">Repearing</option>
+                                    <option>Need to Repair</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary">Filter</button>
+                                <a href="{{ route('quartaz') }}" class="btn btn-secondary ms-2">Reset</a>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quarters</a>
+                            </div>
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                            <div class="col-sm-2 d-flex align-items-end">
+                                <a href="{{ route('previous_quartaz.index') }}" class="btn btn-warning">
+                                    Previous Quartaz
+                                </a>
+                            </div>
+                        @endif
+                        </div>
+                    </form>
 
                     <div class="table-responsive">
                         <table class="table">

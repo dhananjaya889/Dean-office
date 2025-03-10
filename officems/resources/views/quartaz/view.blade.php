@@ -51,7 +51,7 @@
                     <tbody>
                         @foreach ($items as $i)
                             <tr>
-                                <td>{{ $i->item_id }}</td>
+                                <td>{{ $i->item }}</td>
                                 <td>{{ $i->name }}</td>
                                 <td>
                                     @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')

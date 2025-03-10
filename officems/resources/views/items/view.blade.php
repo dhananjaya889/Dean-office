@@ -20,7 +20,7 @@
                     <strong>Description:</strong> {{$items->description}}
                 </div>
                 <div class="mb-3">
-                    <strong>Quarters Number:</strong> {{ $items->quartaz ? $items->quartaz->num : 'Not Assigned' }}
+                    <strong>Quarters Number:</strong> {{ $qua ? $qua->num : 'Not Assigned' }}
                 </div>
             </div>
             <div class="card-footer text-center">

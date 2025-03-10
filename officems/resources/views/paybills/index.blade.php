@@ -1,31 +1,30 @@
 @extends('layouts.admin')
 
-@section('title', 'Utility Bills')
+@section('title', 'Pay Bills')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Utility Bills</div>
+                <div class="card-header bg-primary text-white">Pay Bills</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
 
                     <!-- Filter Form -->
-                    <form method="GET" action="{{ route('bills.index') }}">
+                    <form method="GET" action="{{ route('paybills.index') }}">
                         <div class="row mb-2">
                             <div class="col-md-3">
                                 <label class="form-label">Bill Name</label>
-                                <select name="name" class="form-control">
+                                <select name="bill_name" class="form-control">
                                     <option value="">All</option>
                                     <option value="Electric Bill"
-                                        {{ request('name') == 'Electric Bill' ? 'selected' : '' }}>Electric Bill</option>
-                                    <option value="Water Bill" {{ request('name') == 'Water Bill' ? 'selected' : '' }}>Water
-                                        Bill</option>
+                                        {{ request('bill_name') == 'Electric Bill' ? 'selected' : '' }}>Electric Bill</option>
+                                    <option value="Water Bill" {{ request('name') == 'Water Bill' ? 'selected' : '' }}>Water Bill</option>
                                     <option value="Telecommunication Bill"
-                                        {{ request('name') == 'Telecommunication Bill' ? 'selected' : '' }}>
+                                        {{ request('bill_name') == 'Telecommunication Bill' ? 'selected' : '' }}>
                                         Telecommunication Bill</option>
                                 </select>
                             </div>
@@ -36,18 +35,18 @@
                             </div>
                             <div class="col-md-2 d-flex align-items-end">
                                 <button type="submit" class="btn btn-primary">Filter</button>
-                                <a href="{{ route('bills.index') }}" class="btn btn-secondary ms-2">Reset</a>
+                                <a href="{{ route('paybills.index') }}" class="btn btn-secondary ms-2">Reset</a>
                             </div>
-                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff' || Auth::user()->role == 'lecture')
                                 <div class="col-md-2 d-flex align-items-end">
-                                    <a href="{{ url('/bills/create') }}" class="btn btn-info">Add Bill</a>
+                                    <a href="{{ url('/paybills/create') }}" class="btn btn-info">Add Payied Bill</a>
                                 </div>
                             @endif
-                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+                            {{-- @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                                 <div class="col-sm-2 d-flex align-items-end">
                                     <a href="{{ route('previous.bills') }}" class="btn btn-warning">Previous Bills</a>
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
                     </form>
 
@@ -58,28 +57,24 @@
                                 <tr>
                                     <th>Bill Number</th>
                                     <th>Bill Name</th>
-                                    <th>Bill Date</th>
-                                    <th>Bill Month</th>
-                                    <th>Bill Amount</th>
-                                    <th>Used Point</th>
+                                    <th>Reference Number</th>
+                                    <th>User Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody id="noticeTableBody">
-                                @foreach ($bills as $n)
+                                @foreach ($paybills as $pb)
                                     <tr>
-                                        <td>{{ $n->bill_id }}</td>
-                                        <td>{{ $n->name }}</td>
-                                        <td>{{ $n->date }}</td>
-                                        <td>{{ $n->month }}</td>
-                                        <td>{{ $n->amount }}</td>
-                                        <td>{{ $n->point }}</td>
+                                        <td>{{ $pb->bill_id }}</td>
+                                        <td>{{ $pb->bill_name}}</td>
+                                        <td>{{ $pb->ref_id }}</td>
+                                        <td>{{ $pb->user_id }}</td>
                                         <td><a class="btn btn-primary"
-                                                href="{{ url('/bills/' . $n->id . '/' . $n->name) }}">View</a></td>
+                                                href="{{ url('/paybills/' . $pb->id) }}">View</a></td>
                                         <td>
                                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
-                                                <form action="{{ route('bills.destroy', $n->id) }}" method="POST"
-                                                    onsubmit="return confirm('Are you sure you want to delete this bill?')">
+                                                <form action="{{ route('paybills.destroy', $pb->id) }}" method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this paybill?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -94,7 +89,7 @@
                     </div>
 
                     <div id="paginationLinks">
-                        {{ $bills->links() }}
+                        {{ $paybills->links() }}
                     </div>
                 </div>
             </div>

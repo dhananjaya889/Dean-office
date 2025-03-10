@@ -7,7 +7,9 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">Previous Bills</div>
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="bi bi-clock-history"></i> Previous Bills</h5>
+            </div>
             <div class="card-body">
 
                 <div class="table-responsive">
