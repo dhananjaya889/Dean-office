@@ -121,7 +121,7 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('medical_lec') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-file-medical-fill"></i> <span>Class & Practical Medicals</span>
@@ -133,7 +133,7 @@
                                     href="{{ url('medical_exam') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-file-medical-fill"></i> <span>Exam Medicals</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
@@ -238,7 +238,7 @@
                         
                         @if (Auth::user()->role == 'maintenance')
                         <li class="nav-item">
-                            <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
+                            <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                 href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
                                 <i class="bi bi-hammer"></i> <span>Maintenance</span>
                             </a>
