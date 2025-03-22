@@ -40,7 +40,7 @@
                     </div>
                 
                     <div class="mb-3">
-                        <label class="form-label">About what to maintain</label>
+                        <label class="form-label">What needs to be repaired?</label>
                         <textarea name="description" class="form-control">{{ old('description') }}</textarea>
                     </div>
                 
@@ -56,7 +56,6 @@
                                 <option value="">--- Select one ---</option>
                                 <option value="open" {{ old('admin_approve') == 'open' ? 'selected' : '' }}>Open</option>
                                 <option value="todo" {{ old('admin_approve') == 'todo' ? 'selected' : '' }}>ToDo</option>
-                                <option value="processing" {{ old('admin_approve') == 'processing' ? 'selected' : '' }}>Processing</option>
                                 <option value="done" {{ old('admin_approve') == 'done' ? 'selected' : '' }}>Done</option>
                             </select>
                         </div>

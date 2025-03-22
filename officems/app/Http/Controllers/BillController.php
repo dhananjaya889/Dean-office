@@ -12,6 +12,7 @@ use App\Mail\BillEmail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PreviousBill;
 use App\Mail\BillPaidNotification;
+use App\Models\QuartazUser;
 
 class BillController extends Controller
 {
@@ -42,6 +43,7 @@ class BillController extends Controller
     {
         $users = User::where('role', '!=', 'student')->get();
         $qua = Quartaz::all();
+    
         return view('bills.create', compact('users', 'qua'));
     }
 
@@ -157,6 +159,15 @@ class BillController extends Controller
 
     //     return redirect()->back()->with('success', 'Bill payment completed successfully!');
     // }
+
+    public function getUserAndBillNum($id)
+    {
+        $data = Quartaz::join('quartaz_users', 'quartaz.id', 'quartaz_users.quartaz_id')
+                ->join('users', 'quartaz_users.user_id', 'users.id')
+                ->where('quartaz.id', $id)->first();
+        
+        return $data;
+    }
 
     public function destroy($id)
     {

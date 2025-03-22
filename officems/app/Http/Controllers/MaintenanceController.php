@@ -17,12 +17,12 @@ class MaintenanceController extends Controller
 {
     public function index(Request $request)
     {
-        
+
 
         $query = Maintenance::query();
 
         if (Auth::user()->role != 'admin' && Auth::user()->role != 'staff' && Auth::user()->role != 'maintenance') {
-            
+
             $query->where('user_id', Auth::user()->reg_no);
         }
 
@@ -45,7 +45,7 @@ class MaintenanceController extends Controller
     public function create()
     {
         $itemsQ = QuartazItem::join('items', 'quartaz_items.item_id', '=', 'items.id');
-       // dd($itemsQ->select('items.item_id', 'items.id', 'items.name')->get());
+        // dd($itemsQ->select('items.item_id', 'items.id', 'items.name')->get());
         if (Auth::user()->role != 'admin' && Auth::user()->role != 'staff') {
             $itemsQ->join('quartaz_users', 'quartaz_items.quartaz', '=', 'quartaz_users.quartaz_id')
                 ->where('quartaz_users.user_id', Auth::user()->id);
@@ -95,15 +95,40 @@ class MaintenanceController extends Controller
         $item = Item::find($request->item_id);
         $admin_aprove = $request->admin_approve ?? 'open';
         if ($admin_aprove == 'open') {
-            $body = '<h4>New Maintenance</h4>
-                    <br>
-                    Hi, <br> There is a new maintenance Submited, check on your dashboard <br>
-                        <br><b>From :</b> ' . $user->name . '
-                        <br><b> Item : </b> ' . $item->name . '
-                        <br><b>Description : </b>' . $request->description . '
-                        <br>
-                        <br>Best Regards,
-                        <br>Faculty of Technology.';
+            $body = '<html lang="en">
+                        <head>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    margin: 40px;
+                                }
+                                h3 {
+                                    text-decoration: underline;
+                            </style>
+                        </head>
+                        <body>
+                        
+                            <p>Assistant Registrar<br>
+                            Faculty of Technology<br>
+                            University of Ruhuna</p>
+                            
+                            <h3>Adding the new complaint</h3>
+                            
+                            <p>A new complaint has been submitted; please check. And I kindly request you to provide a solution to this as soon as possible.</p>
+                            
+                            <p><b>User Name :</b>  ' . $user->name . '</p>
+                            <p><b>Quarters Number :</b></p>
+                            <p><b>Item :</b> ' . $item->name . '</p>
+                            <p><b>Description :</b> ' . $request->description . '</p>
+                            
+                            <br>
+                            
+                            <p>' . $user->name . '<br>
+                            Faculty of Technology</p>
+                            
+                        </body>
+                        </html>
+                        ';
             $data = [
                 'title' => 'New Maintenance Submited',
                 'body' => $body,
@@ -205,7 +230,7 @@ class MaintenanceController extends Controller
                     Hi, <br><br> The maintenance has been done by maintenance team <br>
                         <br><b>From :</b> ' . $user->name . '
                         <br><b> Item : </b> ' . $item->name . '
-                        <br><b>Description : </b>' . $request->maintenance_description .'
+                        <br><b>Description : </b>' . $request->maintenance_description . '
                         <br>
                         <br>Best Regards,
                         <br>Faculty of Technology.';
@@ -249,7 +274,7 @@ class MaintenanceController extends Controller
 
         $maintain->delete();
 
-        return redirect()->route('maintain')->with('success', 'Maintenance deleted successfully!');
+        return redirect()->route('maintenance')->with('success', 'Maintenance deleted successfully!');
     }
 
 }

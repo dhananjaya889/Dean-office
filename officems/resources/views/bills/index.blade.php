@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Utility Bills')
+@section('title', 'Utility bills in Quarters')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Utility Bills</div>
+                <div class="card-header bg-primary text-white">Utility Bills Details</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -60,8 +60,6 @@
                                     <th>Bill Name</th>
                                     <th>Bill Date</th>
                                     <th>Bill Month</th>
-                                    <th>Bill Amount</th>
-                                    <th>Used Point</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -72,8 +70,6 @@
                                         <td>{{ $n->name }}</td>
                                         <td>{{ $n->date }}</td>
                                         <td>{{ $n->month }}</td>
-                                        <td>{{ $n->amount }}</td>
-                                        <td>{{ $n->point }}</td>
                                         <td><a class="btn btn-primary"
                                                 href="{{ url('/bills/' . $n->id . '/' . $n->name) }}">View</a></td>
                                         <td>

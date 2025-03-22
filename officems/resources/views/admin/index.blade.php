@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'User Profile')
+@section('title', 'Staff member profile Faculty of Technology')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     <div class="col-md-8">
         <div class="card shadow-lg border-0 rounded-lg">
             <div class="card-header bg-primary text-white text-center">
-                <h3 class="mb-0">User Profile</h3>
+                <h3 class="mb-0">My Profile</h3>
             </div>
             <div class="card-body text-center">
                 <!-- Profile Picture -->

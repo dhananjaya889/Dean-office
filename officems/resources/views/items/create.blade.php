@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Items')
+@section('title', 'Adding Items to Quarters')
 
 @section('content')
 
@@ -23,7 +23,7 @@
                 
                     @csrf
                     <div class="mb-3">
-                        <label class="form-label">Item ID</label>
+                        <label class="form-label">Item Number</label>
                         <input type="text" name="item_id" class="form-control" required>
                     </div>
                     <div class="mb-3">

@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Pay Bills')
+@section('title', 'Monthly bills paid for Faculty Quarters')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Pay Bills</div>
+                <div class="card-header bg-primary text-white">Paid Utility Bills</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -57,7 +57,7 @@
                                 <tr>
                                     <th>Bill Number</th>
                                     <th>Bill Name</th>
-                                    <th>Reference Number</th>
+                                    <th>Premises ID / Inv NO</th>
                                     <th>User Name</th>
                                     <th>Action</th>
                                 </tr>

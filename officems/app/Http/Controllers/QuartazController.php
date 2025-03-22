@@ -55,6 +55,10 @@ class QuartazController extends Controller
             'address' => 'required|string|max:255',
             'description' => 'required|string',
             'status' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'ebill_no' => 'required|string|max:255',
+            'wbill_no' => 'required|string|max:255',
+            'rent' => 'required|string|max:255',
         ]);
 
         Quartaz::create([
@@ -62,6 +66,10 @@ class QuartazController extends Controller
             'address' => $request->address,
             'description' => $request->description,
             'status' => $request->status,
+            'type' => $request->type,
+            'ebill_no' => $request->ebill_no,
+            'wbill_no' => $request->wbill_no,
+            'rent' => $request->rent,
         ]);
 
         return redirect()->route('quartaz')->with('success', 'Quarters created successfully!');
@@ -115,6 +123,10 @@ class QuartazController extends Controller
             'address' => 'required|string|max:255',
             'description' => 'required|string',
             'status' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'ebill_no' => 'required|string|max:255',
+            'wbill_no' => 'required|string|max:255',
+            'rent' => 'required|string|max:255',
         ]);
 
         // Find the quartaz by ID
@@ -126,6 +138,10 @@ class QuartazController extends Controller
             'address' => $request->address,
             'description' => $request->description,
             'status' => $request->status,
+            'type' => $request->type,
+            'ebill_no' => $request->ebill_no,
+            'wbill_no' => $request->wbill_no,
+            'rent' => $request->rent,
         ]);
 
         // Redirect back with a success message

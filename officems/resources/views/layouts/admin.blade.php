@@ -34,7 +34,7 @@
                 <!-- Brand -->
                 <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0 logo_image" href="">
                     <img src="{{ asset('img/uni.png') }}" alt="logo" class="" width="45px" height="auto">
-                    <p>Office Management</p>
+                    <h4>Office Management</h4>
                 </a>
 
                 <hr class="navbar-divider my-0 opacity-20">
@@ -68,7 +68,7 @@
                         <li class="nav-item">
                             <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                 href="{{ url('/dashboard') }}" style="transition: all 0.3s ease;">
-                                <i class="bi bi-house"></i> <span>User Profile</span>
+                                <i class="bi bi-house"></i> <span>User's Profile</span>
                             </a>
                         </li>
 
@@ -77,7 +77,7 @@
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('users') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-people"></i> <span>Users</span>
+                                    <i class="bi bi-people"></i> <span>Staff Members</span>
                                 </a>
                             </li>
 
@@ -102,6 +102,9 @@
                                     <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('items') }}">
                                             <i class="bi bi-box-seam text-success"></i> Quarters Items
                                         </a></li>
+                                    <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('check_list') }}">
+                                            <i class="bi bi-list-check"></i> Quarters Check List
+                                        </a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -115,38 +118,11 @@
                                     <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('bills') }}">
                                             <i class="bi bi-receipt-cutoff"></i> Bills Overview
                                         </a></li>
-                                    <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('paybills') }}">
+                                    <li><a class="dropdown-item py-2 text-dark fw-semibold"
+                                            href="{{ url('paybills') }}">
                                             <i class="bi bi-cash"></i> Pay Bills
                                         </a></li>
                                 </ul>
-                            </li>
-
-                            {{-- <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('medical_lec') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-file-medical-fill"></i> <span>Class & Practical Medicals</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('medical_exam') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-file-medical-fill"></i> <span>Exam Medicals</span>
-                                </a>
-                            </li> --}}
-
-                            <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('/attendance') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-file-medical-fill"></i> <span>Attendance</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('/attendance/create') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-file-medical-fill"></i> <span>Add Attendance</span>
-                                </a>
                             </li>
 
                             <li class="nav-item">
@@ -215,34 +191,13 @@
                             </li>
                         @endif
 
-                        {{-- @if (Auth::user()->role == 'student')
-                            <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('notices') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-chat"></i> <span>Notices</span>
-                                </a>
-                            </li>
+                        @if (Auth::user()->role == 'maintenance')
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('medical_lec') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-file-medical-fill"></i> <span>Class & Practical Medicals</span>
+                                    href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
+                                    <i class="bi bi-hammer"></i> <span>Maintenance</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('medical_exam') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-file-medical-fill"></i> <span>Exam Medicals</span>
-                                </a>
-                            </li>
-                        @endif --}}
-                        
-                        @if (Auth::user()->role == 'maintenance')
-                        <li class="nav-item">
-                            <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
-                                href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
-                                <i class="bi bi-hammer"></i> <span>Maintenance</span>
-                            </a>
-                        </li>
                         @endif
 
                     </ul>

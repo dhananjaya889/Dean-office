@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Update Users')
+@section('title', 'Update the Staff Member')
 
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">Update User</div>
+            <div class="card-header bg-primary text-white">Update Staff Member Details</div>
             <div class="card-body">
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
@@ -40,14 +40,13 @@
                             class="form-control" value="{{$user->email}}" required>
                     </div>
 
-                    <div class="mb-3"><label class="form-label">Registration / Employee Number</label>
+                    <div class="mb-3"><label class="form-label">Employee Number</label>
                         <input type="text" name="reg_no" class="form-control" value="{{$user->reg_no}}" required>
                             
                     </div>
 
                     <div class="mb-3"><label class="form-label">Password</label>
-                        <input type="password" name="password"
-                            class="form-control">
+                        <input type="password" name="password" class="form-control" value="{{$user->password}}" required >
                     </div>
 
                     <div class="mb-3"><label class="form-label">Date of Birth</label>
@@ -118,7 +117,7 @@
                     <div class="mb-3"><label class="form-label">Experience</label>
                         <input type="text" name="experience" class="form-control" value="{{$user->experience}}">
                     </div>
-                    <button type="submit" class="btn btn-success w-100">Update User</button>
+                    <button type="submit" class="btn btn-success w-100">Update Member</button>
                 </form>
             </div>
         </div>

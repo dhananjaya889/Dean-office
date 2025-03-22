@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'View Quarters')
+@section('title', 'View One Quarter In The Faculty')
 
 @section('content')
 <div class="container mt-4">
@@ -13,12 +13,16 @@
             
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong><i class="bi bi-hash"></i> Registration Number:</strong> {{ $quartaz->num }}</p>
-                    <p><strong><i class="bi bi-geo-alt-fill"></i> Address:</strong> {{ $quartaz->address }}</p>
+                    <p><strong><i class="bi bi-hash"></i> Quarters Number:</strong> {{ $quartaz->num }}</p>
+                    <p><strong><i class="bi bi-geo-alt-fill"></i> Quarters Address:</strong> {{ $quartaz->address }}</p>
+                    <p><strong><i class="bi bi-credit-card-2-back-fill"></i> Quarters Electric Bill No:</strong> {{ $quartaz->ebill_no }}</p>
+                    <p><strong><i class="bi bi-credit-card-2-back-fill"></i> Quarters Water Bill No:</strong> {{ $quartaz->wbill_no }}</p>
                 </div>
                 <div class="col-md-6">
                     <p><strong><i class="bi bi-file-text"></i> Description:</strong> {{ $quartaz->description }}</p>
                     <p><strong><i class="bi bi-info-circle"></i> Status:</strong> <span class="badge bg-success">{{ $quartaz->status }}</span></p>
+                    <p><strong><i class="bi bi-file-text"></i> Monthly rent for the quarters:</strong> {{ $quartaz->rent }}</p>
+                    <p><strong><i class="bi bi-house"></i> Quarters Type:</strong> <span class="badge bg-success">{{ $quartaz->type }}</span></p>
                 </div>
             </div>
         </div>
@@ -82,7 +86,7 @@
             <h5 class="mb-0"><i class="bi bi-person-plus"></i> Add Lecture for Quarters</h5>
             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                 <a href="{{ url('/quartaz/quartazuser/'.$quartaz->id) }}" class="btn btn-light btn-sm">
-                    <i class="bi bi-plus-lg"></i> Add Lecture
+                    <i class="bi bi-plus-lg"></i>Assign Staff Members
                 </a>
             @endif
         </div>
@@ -113,7 +117,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i> Delete
+                                            <i class="bi bi-trash"></i> Remove
                                         </button>
                                     </form>
                                     @endif

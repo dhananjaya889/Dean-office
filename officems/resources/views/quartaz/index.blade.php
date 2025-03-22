@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Quarters')
+@section('title', 'Quarters in Faculty')
 
 @section('content')
 
@@ -21,12 +21,12 @@
                             </div>
                             <div class="col-md-2">
                                 <label class="form-label">Quarters Status</label>
-                                <select name="status" class="form-control" >
+                                <select name="status" class="form-control">
                                     <option value=""> --- Status --- </option>
-                                    <option value="selected">Selected</option>
-                                    <option value="unselected">Unselected</option>
-                                    <option value="selected">Repearing</option>
-                                    <option>Need to Repair</option>
+                                    <option value="Selected Quarters">Selected Quarters</option>
+                                    <option value="Unselected Quarters">Unselected Quarters</option>
+                                    <option value="Repearing Quarters">Repairing Quarters</option>
+                                    <option value="Need to Repair Quarters">Need to Repair Quarters</option>
                                 </select>
                             </div>
                             <div class="col-md-2 d-flex align-items-end">
@@ -37,12 +37,12 @@
                                 <a href="{{ url('/quartaz/create') }}" class="btn btn-info">Add Quarters</a>
                             </div>
                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
-                            <div class="col-sm-2 d-flex align-items-end">
-                                <a href="{{ route('previous_quartaz.index') }}" class="btn btn-warning">
-                                    Previous Quartaz
-                                </a>
-                            </div>
-                        @endif
+                                <div class="col-sm-2 d-flex align-items-end">
+                                    <a href="{{ route('previous_quartaz.index') }}" class="btn btn-warning">
+                                        Previous Quartaz
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </form>
 
@@ -52,7 +52,6 @@
                                 <tr>
                                     <th>Quarters Number</th>
                                     <th>Quarters Address</th>
-                                    <th>Quarters Description</th>
                                     <th>Quarters Status</th>
                                 </tr>
                             </thead>
@@ -62,7 +61,6 @@
                                     <tr>
                                         <td>{{ $n->num }}</td>
                                         <td>{{ $n->address }}</td>
-                                        <td>{{ $n->description }}</td>
                                         <td>{{ $n->status }}</td>
                                         <td><a class="btn btn-primary" href="{{ url('/quartaz/' . $n->id) }}">View</a></td>
                                         <td><a href="{{ route('quartaz.edit', $n->id) }}" class="btn btn-primary">Edit</a>
@@ -72,7 +70,7 @@
                                                 onsubmit="return confirm('Are you sure you want to delete this quartaz?')">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Remove</button>
                                             </form>
                                         </td>
                                     </tr>

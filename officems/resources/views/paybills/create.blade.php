@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Add Pay Bill')
+@section('title', 'To submit paid quarters bill')
 
 @section('content')
 
@@ -46,7 +46,7 @@
                         <input type="int" name="amount" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Bill Reference Number</label>
+                        <label class="form-label">Premises ID / Inv NO</label>
                         <input type="text" name="ref_id" class="form-control" required>
                     </div>
 
@@ -55,7 +55,7 @@
                         <input type="file" name="image" class="form-control" required>
                     </div>
 
-                    <button type="submit" class="btn btn-success w-100">Submit Payied Bill</button>
+                    <button type="submit" class="btn btn-success w-100">Submitted</button>
                 </form>
             </div>
         </div>

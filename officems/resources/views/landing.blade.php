@@ -42,7 +42,8 @@
 <body>
     <a href="{{ route('login') }}" class="login-link">Login</a>
     <div class="container">
-        <h1>Dean Office Management System</h1>
+        <h1>Management Information System</h1>
+        <h2>Dean Office</h2>
         <h2>Faculty of Technology</h2>
         <p>Universoty of Ruhuna</p>
     </div>

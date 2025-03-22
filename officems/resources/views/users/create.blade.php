@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Users')
+@section('title', 'Adding a new staff member to the Faculty of Technology')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Create User</div>
+                <div class="card-header bg-primary text-white">Create new staff member</div>
                 <div class="card-body">
                     @if(session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -36,7 +36,7 @@
                             <input type="email" name="email"class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Registration / Employee Number</label>
+                            <label class="form-label">Employee Number</label>
                             <input type="text"name="reg_no" class="form-control" required>
                         </div>
                         <div class="mb-3">
@@ -88,10 +88,8 @@
                                 <option value="staff">Staff</option>
                                 <option value="lecturer">Lecturer</option>
                                 <option value="temporary-lecturer">Temporary Lecturer</option>
-                                <option value="student">Student</option>
                                 <option value="temporary-demostrator">Temporary-Demostrator</option>
                                 <option value="non-academic">Non-Acedamic</option>
-                                <option value="cleaning-services">Cleaning Services</option>
                             </select>
                         </div>
 
@@ -111,7 +109,7 @@
                         <div class="mb-3"><label class="form-label">Experience</label>
                             <textarea name="experience" class="form-control"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success w-100" onclick="window.history.back();">Create User</button>
+                        <button type="submit" class="btn btn-success w-100" onclick="window.history.back();">Create Member</button>
                     </form>
                 </div>
             </div>

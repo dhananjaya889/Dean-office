@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Add Quarters Items')
+@section('title', 'Adding Items to Quarters')
 
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">Add Quarters Items</div>
+            <div class="card-header bg-primary text-white">Add Quarter's Items</div>
             <div class="card-body">
                
                 @if ($errors->any())
@@ -25,15 +25,15 @@
                     <input type="hidden" name="quartaz" value="{{$id}}">
                     <div class="mb-3">
                         <label class="form-label"> Items</label>
-                        <select name="item_id">
-                            <option value="">--- Select item ---</option>
+                        <select name="item_id" id="" class="form-control">
+                            <option value="">--- Select items ---</option>
                             @foreach ($items as $i)
                                 <option value="{{$i->id}}">{{$i->item_id}} - {{$i->name}}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success w-100">Add Quarters Items</button>
+                    <button type="submit" class="btn btn-success w-100">Add</button>
                 </form>
             </div>
         </div>

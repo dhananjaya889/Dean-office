@@ -24,7 +24,26 @@
                                 <label class="form-label fw-bold">Address</label>
                                 <input type="text" name="address" class="form-control" value="{{ $quartaz->address }}" required>
                             </div>
-
+                            <div class="mb-3"><label class="form-label">Quarters Type</label>
+                                <select name="type" class="form-control">
+                                    <option value="{{ $quartaz->type }}" selected>{{ $quartaz->type }}</option>
+                                    <option value="Bachelor Quarters">Bachelor Quarters</option>
+                                    <option value="Family Quarters">Family Quarters</option>
+                                    <option value="Guest House">Guest House</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Quarters Electric Bill No</label>
+                                <input type="text" name="ebill_no" class="form-control" value="{{ $quartaz->ebill_no }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Quarters Water Bill No</label>
+                                <input type="text" name="wbill_no" class="form-control" value="{{ $quartaz->wbill_no }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Monthly rent for the quarters</label>
+                                <input type="text" name="rent" class="form-control" value="{{ $quartaz->rent }}" required>
+                            </div>
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Description</label>
                                 <textarea name="description" class="form-control" rows="4" required>{{ $quartaz->description }}</textarea>

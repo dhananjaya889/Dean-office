@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\ChechListController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MedicalExamController;
@@ -81,6 +82,7 @@ Route::middleware([
     Route::get('/bills/create', [BillController::class, 'create'])->name('bills.create');
     Route::post('/bills/store', [BillController::class, 'store'])->name('bills.store');
     Route::get('/bills/{id}/{name}', [BillController::class, 'getBillsById'])->name('bills.show');
+    Route::get('/bills/getByQua/data/{id}', [BillController::class, 'getUserAndBillNum'])->name('bils.getByQua');
     Route::delete('/bills/{id}', [BillController::class, 'destroy'])->name('bills.destroy');
 
     Route::get('/previous_bills', [BillController::class, 'previousBills'])->name('previous.bills');
@@ -89,7 +91,6 @@ Route::middleware([
     Route::post('/previous-bills/store', [PreviousBillController::class, 'store'])->name('previous.bills.store');
     Route::get('/previous-bills/download', [PreviousBillController::class, 'downloadPdf'])->name('previous.bills.download');
     
-    // Route::post('/bills/{id}/complete', [BillController::class, 'complete'])->name('bills.complete');
 
     //paybills
     Route::get('/paybills',[PaybillController::class, 'index'])->name('paybills.index');
@@ -97,21 +98,6 @@ Route::middleware([
     Route::post('/paybills/store', [PaybillController::class, 'store'])->name('paybills.store');
     Route::get('paybills/{id}', [PaybillController::class, 'getPaybillsById'])->name('paybills.show');
     Route::delete('/paybills/{id}', [PaybillController::class, 'destroy'])->name('paybills.destroy');
-
-    // medicals
-    Route::get('medical_lec', [MedicalLecController::class, 'index'])->name('medical_lec');
-    Route::get('medical/create_lec', [MedicalLecController::class, 'create'])->name('medical.createlec');
-    Route::post('medical/store_lec', [MedicalLecController::class, 'store'])->name('medical.store_lec');
-    Route::get('medical/view_lec/{id}', [MedicalLecController::class, 'show'])->name('medical.view_lec');
-    Route::post('medical/chenge_status_lec/{id}', [MedicalLecController::class, 'updateStatus'])->name('medical.chenge_status_lec');
-    Route::delete('/medical_lec/{id}', [MedicalLecController::class, 'destroy'])->name('medical_lec.destroy');
-
-    Route::get('medical_exam', [MedicalExamController::class, 'index'])->name('medical_exam');
-    Route::get('medical/create_exam', [MedicalExamController::class, 'create'])->name('medical.create_exam');
-    Route::post('medical/store_exam', [MedicalExamController::class, 'store'])->name('medical.store_exam');
-    Route::get('medical/view_exam/{id}', [MedicalExamController::class, 'show'])->name('medical.view_exam');
-    Route::post('medical/chenge_status_exam/{id}', [MedicalExamController::class, 'updateStatus'])->name('medical.chenge_status_exam');
-    Route::delete('/medical_exam/{id}', [MedicalExamController::class, 'destroy'])->name('medical_exam.destroy');
 
     //attendance
     Route::get('/attendance', [AtendanceController::class, 'index'])->name('attendance.index');
@@ -128,11 +114,10 @@ Route::middleware([
     Route::get('/maintenance/{id}', [MaintenanceController::class, 'getMaintenanceById'])->name('maintenance.show');
     Route::delete('/maintenance/{id}', [MaintenanceController::class, 'destroy'])->name('maintenance.destroy');
 
-    //subjects
-    // Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
-    // Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
-    // Route::post('/subjects/store', [SubjectController::class, 'store'])->name('subjects.store');
-    // Route::get('/subjects/{id}/{subject_name}', [SubjectController::class, 'getSubjectById'])->name('subjects.show');
-    // Route::delete('/subjects/{id}', [SubjectController::class, 'destroy'])->name('subjects.destroy');
+    //check list
+    Route::get('/check_list', [ChechListController::class, 'index'])->name('check_list.index');
+    Route::get('/chech_list/create/{user_id}/{qua_id}', [ChechListController::class, 'create'])->name('check_list.create');
+    Route::post('/check_list/store', [ChechListController::class, 'store'])->name('check_list.store');
+
 
 });

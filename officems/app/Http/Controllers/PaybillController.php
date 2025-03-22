@@ -83,7 +83,9 @@ class PaybillController extends Controller
             'user' => $request->user_id,
             'amount' => $request->amount,
             'bill_id' => $request->bill_id,
-            'ref_id' => $request->ref_id
+            'ref_id' => $request->ref_id,
+            'bill_name' => $request->bill_name,
+            'created_at' => $request->created_at,
         ];
 
         Mail::to(env('ADMIN_EMAIL'))->send(new BillPayid($data));
@@ -148,6 +150,6 @@ class PaybillController extends Controller
         $paybills->delete();
 
         // Redirect back with success message
-        return redirect()->route('paybills')->with('success', 'Paybill deleted successfully!');
+        return redirect()->route('paybills.index')->with('success', 'Paybill deleted successfully!');
     }
 }

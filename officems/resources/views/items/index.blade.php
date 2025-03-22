@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Items</div>
+                <div class="card-header bg-primary text-white">All Quarters Items</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -15,7 +15,7 @@
                     <form method="GET" action="{{ route('items') }}" class="mb-3">
                         <div class="row mb-2">
                             <div class="col-md-3">
-                                <label class="form-label">Item ID</label>
+                                <label class="form-label">Item Number</label>
                                 <input type="text" name="item_id" class="form-control" value="{{ request('item_id') }}">
                             </div>
                             <div class="col-md-2">
@@ -41,10 +41,9 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Item ID</th>
+                                    <th>Item Number</th>
                                     <th>Item Name</th>
                                     <th>Item add Date</th>
-                                    <th>Item Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,7 +54,6 @@
                                         <td>{{ $n->item_id }}</td>
                                         <td>{{ $n->name }}</td>
                                         <td>{{ $n->created_at }}</td>
-                                        <td>{{ $n->description }}</td>
                                         <td><a class="btn btn-primary"
                                                 href="{{ url('/items/' . $n->id . '/' . $n->name) }}">View</a></td>
                                         <td>
@@ -63,7 +61,7 @@
                                                 onsubmit="return confirm('Are you sure you want to delete this item?')">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Remove</button>
                                             </form>
                                         </td>
                                     </tr>

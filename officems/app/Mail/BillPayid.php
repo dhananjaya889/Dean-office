@@ -27,7 +27,7 @@ class BillPayid extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Bill Payid',
+            subject: 'The paid bill has been submitted.',
         );
     }
 

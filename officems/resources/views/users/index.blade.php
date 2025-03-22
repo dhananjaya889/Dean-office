@@ -1,12 +1,13 @@
 @extends('layouts.admin')
-@section('title', 'Users')
+
+@section('title', 'Staff Members Details in the Faculty of Technology')
 
 @section('content')
 
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Users</div>
+                <div class="card-header bg-primary text-white">Staff Members in Faculty </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
@@ -18,7 +19,7 @@
                             </div>
                             <div class="col-sm-3"></div>
                             <div class="col-sm-3">
-                                    <a href="{{url('/users/create')}}" class="btn btn-info">Add Users</a>
+                                    <a href="{{url('/users/create')}}" class="btn btn-info">Add Members</a>
                             </div>
                         </div>
                     </div>
@@ -29,10 +30,9 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Registration Number</th>
+                                    <th>Employee Number</th>
                                     <th>Phone</th>
                                     <th>Role</th>
-                                    <th>Province</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -52,7 +52,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="userModalLabel">User Details</h5>
+                    <h5 class="modal-title" id="userModalLabel">Staff Member Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modalBody">
@@ -91,7 +91,6 @@
                         <td>${user.reg_no}</td>
                         <td>${user.phone_number}</td>
                         <td>${user.role}</td>
-                        <td>${user.province}</td>
                         <td><button class="btn btn-primary" onclick="viewUser(${user.id})">View</button></td>
                         <td><a class="btn btn-primary" href="{{url('/user/edit/${user.id}')}}">Update</a></td>
                         <td>

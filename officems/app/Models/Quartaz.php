@@ -13,5 +13,9 @@ class Quartaz extends Model
         'address',
         'description',
         'status',
+        'type',
+        'ebill_no',
+        'wbill_no',
+        'rent',
     ];
 }
