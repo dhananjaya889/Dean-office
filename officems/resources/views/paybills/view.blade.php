@@ -26,7 +26,7 @@
                         <strong>Bill Amount:</strong> <span class="text-success">Rs. {{ $paybills->amount }}</span>
                     </div>
                     <div class="mb-3">
-                        <strong>User Name:</strong> {{ $paybills->user_id }}
+                        <strong>User ID:</strong> {{ $paybills->user_id }}
                     </div>
                     @if ($paybills->image)
                         <div class="text-center">

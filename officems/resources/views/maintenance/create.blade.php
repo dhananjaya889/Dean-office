@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Maintenance')
+@section('title', 'Adding the Complaint for Maintenance')
 
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">Add Inquery</div>
+            <div class="card-header bg-primary text-white">Add Complaint</div>
             <div class="card-body">
                
                 @if ($errors->any())
@@ -86,7 +86,7 @@
                         </select>
                     </div>
                 
-                    <button type="submit" class="btn btn-success w-100">Add Complain</button>
+                    <button type="submit" class="btn btn-success w-100">Submit</button>
                 </form>
             </div>
         </div>

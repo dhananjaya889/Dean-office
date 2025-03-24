@@ -23,6 +23,7 @@
                     <p><strong><i class="bi bi-info-circle"></i> Status:</strong> <span class="badge bg-success">{{ $quartaz->status }}</span></p>
                     <p><strong><i class="bi bi-file-text"></i> Monthly rent for the quarters:</strong> {{ $quartaz->rent }}</p>
                     <p><strong><i class="bi bi-house"></i> Quarters Type:</strong> <span class="badge bg-success">{{ $quartaz->type }}</span></p>
+                    <p><strong><i class="bi bi-house"></i> Other Notes For The Family Quarters:</strong> {{ $quartaz->other_note }}</p>
                 </div>
             </div>
         </div>

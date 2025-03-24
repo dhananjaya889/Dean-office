@@ -56,6 +56,8 @@
                                         <td>{{ $n->created_at }}</td>
                                         <td><a class="btn btn-primary"
                                                 href="{{ url('/items/' . $n->id . '/' . $n->name) }}">View</a></td>
+                                        <td><a href="{{ route('items.edit', [$n->id, $n->name]) }}" class="btn btn-primary">Edit</a>
+                                        </td>
                                         <td>
                                             <form action="{{ route('items.destroy', $n->id) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this item?')">

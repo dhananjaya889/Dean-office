@@ -20,7 +20,7 @@ class PaybillController extends Controller
         $query = Paybill::query();
 
         if (Auth::user()->role !== 'admin' && Auth::user()->role !== 'staff') {
-            $query->where('assign_user', Auth::user()->id);
+            $query->where('user_id', Auth::user()->id);
         }
 
         // Apply filters if provided
@@ -53,6 +53,7 @@ class PaybillController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
         'user_id' => 'required|string|max:255',
         'amount' => 'required|string',

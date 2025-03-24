@@ -29,9 +29,9 @@
 </head>
 <body>
   
-  <p style="text-align: right;">14.03.2025</p>
+  <p style="text-align: right;">{{now()}}</p>
   
-    <p>Assistant Bursar<br>
+    <p>{{$data['name']}}<br>
     Faculty of Technology<br>
     University of Ruhuna</p>
     
@@ -49,10 +49,10 @@
         </tr>
         <tr>
             <td>01</td>
-            <td>W.L.N. Thathsarani (Tem. Demonstrator/Dept. of ET)</td>
-            <td>14.03.2025</td>
-            <td>GH 03</td>
-            <td>4,000.00</td>
+            <td>{{$data['name']}}</td>
+            <td>{{$data['rdate']}}</td>
+            <td>{{$data['qnum']}}</td>
+            <td>{{$data['rent']}}</td>
         </tr>
     </table>
     

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Quartaz;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -93,6 +94,8 @@ class MaintenanceController extends Controller
 
         $user = User::where('reg_no', $request->user_id)->first();
         $item = Item::find($request->item_id);
+        $qitem = QuartazItem::where('item_id', $request->item_id)->first();
+        $qua = Quartaz::where('id', $qitem->quartaz)->first();
         $admin_aprove = $request->admin_approve ?? 'open';
         if ($admin_aprove == 'open') {
             $body = '<html lang="en">
@@ -117,8 +120,7 @@ class MaintenanceController extends Controller
                             <p>A new complaint has been submitted; please check. And I kindly request you to provide a solution to this as soon as possible.</p>
                             
                             <p><b>User Name :</b>  ' . $user->name . '</p>
-                            <p><b>Quarters Number :</b></p>
-                            <p><b>Item :</b> ' . $item->name . '</p>
+                            <p><b>Quarters Number : '. $qua->num .'</b></p>
                             <p><b>Description :</b> ' . $request->description . '</p>
                             
                             <br>
@@ -137,15 +139,38 @@ class MaintenanceController extends Controller
             Mail::to(env('ADMIN_MAINTENANCE_EMAIL'))->send(new MaintenanceMail($data));
 
         } elseif ($admin_aprove == 'tudo') {
-            $body = '<h4>New Maintenance</h4>
-                    <br>
-                    Hi, <br> There is a new maintenance Submited, check on your dashboard <br>
-                        <br><b>From :</b> ' . $user->name . '
-                        <br><b> Item : </b> ' . $item->name . '
-                        <br><b>Description : </b>' . $request->description . '
-                        <br>
-                        <br>Best Regards,
-                        <br>Faculty of Technology.';
+            $body = '<html lang="en">
+                        <head>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    margin: 40px;
+                                }
+                                h3 {
+                                    text-decoration: underline;
+                            </style>
+                        </head>
+                        <body>
+                        
+                            <p>Assistant Registrar<br>
+                            Faculty of Technology<br>
+                            University of Ruhuna</p>
+                            
+                            <h3>A New Quarters Maintenance work</h3>
+                            
+                            <p>A new complaint has been submitted; please check. Resolve this as soon as possible.</p>
+                            
+                            <p><b>From User :</b>  ' . $user->name . '</p>
+                            <p><b>Quarters Number : '. $qua->num .'</b></p>
+                            <p><b>Description :</b> ' . $request->description . '</p>
+                            
+                            <br>
+                            
+                            <p>' . $user->name . '<br>
+                            Faculty of Technology</p>
+                            
+                        </body>
+                        </html>';
             $data = [
                 'title' => 'New Maintenance Submited, check on your dashboard',
                 'body' => $body,
@@ -208,6 +233,9 @@ class MaintenanceController extends Controller
         $user = User::where('reg_no', $request->user_id)->first();
         $item = Item::find($request->item_id);
 
+        $qitem = QuartazItem::where('item_id', $request->item_id)->first();
+        $qua = Quartaz::where('id', $qitem->quartaz)->first();
+
         if ($request->admin_approve == 'tudo') {
             $body = '<h4>New Maintenance</h4>
                     <br>
@@ -225,17 +253,39 @@ class MaintenanceController extends Controller
             info("call");
             Mail::to(env('MAINTENANCE_EMAIL'))->send(new MaintenanceMail($data));
         } elseif ($request->mainten_status == 'done') {
-            $body = '<h4>Maintenance has been done</h4>
-                    <br>
-                    Hi, <br><br> The maintenance has been done by maintenance team <br>
-                        <br><b>From :</b> ' . $user->name . '
-                        <br><b> Item : </b> ' . $item->name . '
-                        <br><b>Description : </b>' . $request->maintenance_description . '
-                        <br>
-                        <br>Best Regards,
-                        <br>Faculty of Technology.';
+            $body = '<html lang="en">
+                        <head>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    margin: 40px;
+                                }
+                                h3 {
+                                    text-decoration: underline;
+                            </style>
+                        </head>
+                        <body>
+                        
+                            <p>Maintenance<br>
+                            Faculty of Technology<br>
+                            University of Ruhuna</p>
+                            
+                            <h3>Your complaint has been completed.</h3>
+                            
+                            <p>The maintenance team has completed the maintenance work on your quarters.</p>
+                            
+                            <p><b>From User :</b>  ' . $user->name . '</p>
+                            <p><b>Item Name :</b> ' . $item->name . '</p>
+                            <p><b>Quarters Number :</b>'. $qua->num .'</p>
+                            <p><b>Description :</b> ' .($request->maintenance_description ?? 'No description provided') . '</p>
+                            
+                            <p>Best Regards,<br>
+                            Faculty of Technology.</p>
+                            
+                        </body>
+                        </html>';
             $data = [
-                'title' => 'Complete Maintenance',
+                'title' => 'Completed complaint maintenance',
                 'body' => $body,
             ];
 

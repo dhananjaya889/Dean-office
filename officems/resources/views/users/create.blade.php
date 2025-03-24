@@ -90,6 +90,7 @@
                                 <option value="temporary-lecturer">Temporary Lecturer</option>
                                 <option value="temporary-demostrator">Temporary-Demostrator</option>
                                 <option value="non-academic">Non-Acedamic</option>
+                                <option value="maintenance">Maintenance</option>
                             </select>
                         </div>
 

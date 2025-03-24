@@ -44,14 +44,12 @@
         <tr>
             <th>Bill Name</th>
             <th>Bill Number</th>
-            <th>Quarters Number</th>
             <th>Amount</th>
             <th>Premises ID / Inv NO</th>
         </tr>
         <tr>
             <td>{{ $data['bill_name'] }}</td>
             <td>{{ $data['bill_id'] }}</td>
-            <td></td>
             <td>{{ $data['amount'] }}</td>
             <td>{{ $data['ref_id'] }}</td>
         </tr>

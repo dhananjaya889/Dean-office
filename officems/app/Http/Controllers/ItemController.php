@@ -74,6 +74,32 @@ class ItemController extends Controller
         return view('items.view', compact('items', 'qua'));
     }
 
+    public function edit($id)
+    {
+        $items = Item::findOrFail($id);
+        return view('items.update', compact('items'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'item_id' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $items = Item::findOrFail($id);
+
+        $items->update([
+            'item_id' => $request->item_id,
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('items')->with('success', 'Item updated successfully!');
+    }
+
+
     public function show($id)
     {
         $item = Item::with('quarter')->findOrFail($id);
@@ -90,7 +116,7 @@ class ItemController extends Controller
     {
         // Find the user by ID
         $items = Item::findOrFail($id);
-        $qitems = QuartazItem::join('quartaz', 'quartaz_items.quartaz','quartaz.id')->first();
+        $qitems = QuartazItem::join('quartaz', 'quartaz_items.quartaz', 'quartaz.id')->first();
 
         PreviousItem::create([
             'item_id' => $items->item_id,

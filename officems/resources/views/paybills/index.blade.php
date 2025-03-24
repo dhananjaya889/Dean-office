@@ -37,11 +37,11 @@
                                 <button type="submit" class="btn btn-primary">Filter</button>
                                 <a href="{{ route('paybills.index') }}" class="btn btn-secondary ms-2">Reset</a>
                             </div>
-                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff' || Auth::user()->role == 'lecture')
+                            
                                 <div class="col-md-2 d-flex align-items-end">
                                     <a href="{{ url('/paybills/create') }}" class="btn btn-info">Add Payied Bill</a>
                                 </div>
-                            @endif
+                            
                             {{-- @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                                 <div class="col-sm-2 d-flex align-items-end">
                                     <a href="{{ route('previous.bills') }}" class="btn btn-warning">Previous Bills</a>
@@ -58,7 +58,7 @@
                                     <th>Bill Number</th>
                                     <th>Bill Name</th>
                                     <th>Premises ID / Inv NO</th>
-                                    <th>User Name</th>
+                                    <th>User ID</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

@@ -32,6 +32,9 @@
                                     <option value="Guest House">Guest House</option>
                                 </select>
                             </div>
+                            <div class="mb-3"><label class="form-label">Other Notes For The Family Quarters</label>
+                                <textarea name="other_note" class="form-control" rows="5">{{ $quartaz->other_note }}</textarea>
+                            </div>
                             <div class="mb-3">
                                 <label class="form-label">Quarters Electric Bill No</label>
                                 <input type="text" name="ebill_no" class="form-control" value="{{ $quartaz->ebill_no }}" required>
@@ -56,7 +59,6 @@
                                     <option value="Selected Quarters">Selected Quarters</option>
                                     <option value="Unselected Quarters">Unselected Quarters</option>
                                     <option value="Repearing Quarters">Repairing Quarters</option>
-                                    <option value="Need to Repair Quarters">Need to Repair Quarters</option>
                                 </select>
                             </div>
 

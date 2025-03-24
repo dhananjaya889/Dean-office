@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Maintenance')
+@section('title', 'Update the Complaint for Maintenance')
 
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">Add Inquery</div>
+            <div class="card-header bg-primary text-white">Update Complaint</div>
             <div class="card-body">
                
                 @if ($errors->any())
@@ -57,8 +57,6 @@
                                 <option value="">--- Select one ---</option>
                                 <option value="open" {{ $m->admin_approve == 'open' ? 'selected' : '' }}>Open</option>
                                 <option value="todo" {{ $m->admin_approve == 'todo' ? 'selected' : '' }}>ToDo</option>
-                                <option value="processing" {{ $m->admin_approve == 'processing' ? 'selected' : '' }}>Processing</option>
-                                <option value="complete" {{ $m->admin_approve == 'complete' ? 'selected' : '' }}>Complete</option>
                                 <option value="done" {{ $m->admin_approve == 'done' ? 'selected' : '' }}>Done</option>
                             </select>
                         </div>
@@ -91,7 +89,7 @@
                     @endif
                     
                 
-                    <button type="submit" class="btn btn-success w-100">Update Maintenance</button>
+                    <button type="submit" class="btn btn-success w-100">Update</button>
                 </form>
             </div>
         </div>

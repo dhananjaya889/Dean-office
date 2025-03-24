@@ -17,7 +17,7 @@ class QuartazUserController extends Controller
         $quids = QuartazUser::pluck('user_id')->toArray();
 
        
-        $user = User::whereIn('role', ['lecture', 'temporary-demostrator'])
+        $user = User::whereIn('role', ['staff','lecturer','', 'temporary-lecturer','temporary-demostrator','non-academic','maintenance'])
                     ->whereNotIn('id', $quids)
                     ->get();
 
@@ -37,7 +37,7 @@ class QuartazUserController extends Controller
         $qua = Quartaz::find($request->quartaz_id);
 
         if ($user) {
-            Mail::to($user->email)->send(new QuartazUserAddedMail($qua));
+            Mail::to($user->email)->send(new QuartazUserAddedMail($qua, $user));
         }
 
         return redirect()->route('quartaz.show', ['id' => $request->quartaz_id]);

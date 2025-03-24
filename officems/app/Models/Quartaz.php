@@ -17,5 +17,6 @@ class Quartaz extends Model
         'ebill_no',
         'wbill_no',
         'rent',
+        'other_note',
     ];
 }

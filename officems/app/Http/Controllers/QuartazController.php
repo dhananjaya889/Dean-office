@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\QUserRemoveMail;
 use App\Models\Quartaz;
 use App\Models\QuartazItem;
 use App\Models\QuartazUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\PreviousQuartaz;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class QuartazController extends Controller
 {
@@ -59,6 +62,7 @@ class QuartazController extends Controller
             'ebill_no' => 'required|string|max:255',
             'wbill_no' => 'required|string|max:255',
             'rent' => 'required|string|max:255',
+            'other_note' => 'nullable|string|max:255',
         ]);
 
         Quartaz::create([
@@ -70,6 +74,7 @@ class QuartazController extends Controller
             'ebill_no' => $request->ebill_no,
             'wbill_no' => $request->wbill_no,
             'rent' => $request->rent,
+            'other_note' => $request->other_note,
         ]);
 
         return redirect()->route('quartaz')->with('success', 'Quarters created successfully!');
@@ -117,6 +122,7 @@ class QuartazController extends Controller
 
     public function update(Request $request, $id)
     {
+        
         // Validate the request data
         $request->validate([
             'num' => 'required|string|max:255',
@@ -127,6 +133,7 @@ class QuartazController extends Controller
             'ebill_no' => 'required|string|max:255',
             'wbill_no' => 'required|string|max:255',
             'rent' => 'required|string|max:255',
+            'other_note' => 'nullable|string|max:255',
         ]);
 
         // Find the quartaz by ID
@@ -142,6 +149,7 @@ class QuartazController extends Controller
             'ebill_no' => $request->ebill_no,
             'wbill_no' => $request->wbill_no,
             'rent' => $request->rent,
+            'other_note' => $request->other_note,
         ]);
 
         // Redirect back with a success message
@@ -167,6 +175,7 @@ class QuartazController extends Controller
     {
         $quartaz = Quartaz::findOrFail($id);
         $quser = QuartazUser::where('quartaz_id', $quartaz->id)->first();
+        $user = User::findOrFail($quser->user_id);
 
         // Save details in previous_quartaz table before deletion
         PreviousQuartaz::create([
@@ -174,10 +183,19 @@ class QuartazController extends Controller
             'user_id' => $quser ? $quser->user_id : null,
         ]);
 
+        $mailData = [
+            'name' => $user->name,
+            'rdate' => now(),
+            'qnum' => $quartaz->num,
+            'rent' => $quartaz->rent
+        ];
+
         $quartaz->status = 'unselected';
         $quartaz->save();
         // Delete the quartaz record
-        $quser->delete();
+        $quser->delete(); 
+
+        Mail::to($user->email)->cc(env('ADMIN_EMAIL'))->send(new QUserRemoveMail($mailData));
 
         return redirect()->route('quartaz')->with('success', 'Quarters moved to previous records successfully.');
     }

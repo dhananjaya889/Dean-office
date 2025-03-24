@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Maintenance')
+@section('title', 'Faculty Maintenance')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">Maintenance</div>
+                <div class="card-header bg-primary text-white">Maintenance Details</div>
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
@@ -30,7 +30,6 @@
                                     <option value="">--- Select one ---</option>
                                     <option value="open">Open</option>
                                     <option value="todo">ToDo</option>
-                                    <option value="processing">Processing</option>
                                     <option value="done">Done</option>
                                 </select>
                             </div>
@@ -38,9 +37,8 @@
                                 <button type="submit" class="btn btn-primary">Filter</button>
                                 <a href="{{ route('maintenance') }}" class="btn btn-secondary ms-2">Reset</a>
                             </div>
-
                             <div class="col-md-2 d-flex align-items-end">
-                                <a href="{{ url('/maintenance/create') }}" class="btn btn-info">Add Inquery</a>
+                                <a href="{{ url('/maintenance/create') }}" class="btn btn-info">Add Quarters Complaint</a>
                             </div>
                             {{-- @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                     <div class="col-sm-2 d-flex align-items-end">
@@ -92,7 +90,7 @@
                         </table>
                     </div>
                     <div id="paginationLinks">
-
+                        {{$maintens->links()}}
                     </div>
 
                 </div>

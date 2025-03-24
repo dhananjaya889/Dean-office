@@ -9,18 +9,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class QuartazUserAddedMail extends Mailable
+class QUserRemoveMail extends Mailable
 {
-    use Queueable, SerializesModels;
-
-    
+    // use Queueable, SerializesModels;
+    public $data;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public $data, public $user)
+    public function __construct($data)
     {
-        
+        $this->data = $data;
     }
 
     /**
@@ -29,7 +28,7 @@ class QuartazUserAddedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to Quartaz!',
+            subject: 'Stoppage of Salary Deduction',
         );
     }
 
@@ -39,7 +38,7 @@ class QuartazUserAddedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.quartaz_user_added',
+            view: 'emails.quartaz_remove',
         );
     }
 

@@ -115,7 +115,13 @@ class BillController extends Controller
     {
 
         $bills = Bill::find($id);
-        return view('bills.view', compact('bills'));
+        $quser = QuartazUser::where('quartaz_id', $bills->assign_quartaz)->first();
+        $user = [];
+        
+        if ($quser) {
+            $user = User::find($quser->user_id);
+        }
+        return view('bills.view', compact('bills', 'user'));
     }
 
     public function show($id)

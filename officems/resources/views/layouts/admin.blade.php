@@ -102,7 +102,8 @@
                                     <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('items') }}">
                                             <i class="bi bi-box-seam text-success"></i> Quarters Items
                                         </a></li>
-                                    <li><a class="dropdown-item py-2 text-dark fw-semibold" href="{{ url('check_list') }}">
+                                    <li><a class="dropdown-item py-2 text-dark fw-semibold"
+                                            href="{{ url('check_list') }}">
                                             <i class="bi bi-list-check"></i> Quarters Check List
                                         </a></li>
                                 </ul>
@@ -133,13 +134,7 @@
                             </li>
                         @endif
 
-                        @if (Auth::user()->role == 'lecture')
-                            {{-- <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('notices') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-chat"></i> <span>Notices</span>
-                                </a>
-                            </li> --}}
+                        @if (Auth::user()->role == 'lecture' || Auth::user()->role == 'temporary-lecturer')
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('/quartaz/user/' . Auth::user()->id) }}"
@@ -154,21 +149,23 @@
                                     <i class="bi bi-credit-card-2-back-fill"></i> <span>Utility Bills</span>
                                 </a>
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                                <li><a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                                    href="{{ url('paybills') }}">
+                                    <i class="bi bi-cash"></i> Pay Bills
+                                </a></li>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-hammer"></i> <span>Maintenance</span>
                                 </a>
                             </li>
                         @endif
 
-                        @if (Auth::user()->role == 'temporary-demostrator')
-                            {{-- <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
-                                    href="{{ url('notices') }}" style="transition: all 0.3s ease;">
-                                    <i class="bi bi-chat"></i> <span>Notices</span>
-                                </a>
-                            </li> --}}
+                        @if (Auth::user()->role == 'temporary-demostrator' || Auth::user()->role == 'non-academic')
+                            
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('/quartaz/user/' . Auth::user()->id) }}"
@@ -184,7 +181,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                                <li><a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
+                                    href="{{ url('paybills') }}">
+                                    <i class="bi bi-cash"></i> Pay Bills
+                                </a></li>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-2 rounded-pill text-white bg-dark shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('/maintenance') }}" style="transition: all 0.3s ease;">
                                     <i class="bi bi-hammer"></i> <span>Maintenance</span>
                                 </a>

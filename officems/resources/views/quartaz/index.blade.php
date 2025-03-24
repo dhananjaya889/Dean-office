@@ -26,7 +26,6 @@
                                     <option value="Selected Quarters">Selected Quarters</option>
                                     <option value="Unselected Quarters">Unselected Quarters</option>
                                     <option value="Repearing Quarters">Repairing Quarters</option>
-                                    <option value="Need to Repair Quarters">Need to Repair Quarters</option>
                                 </select>
                             </div>
                             <div class="col-md-2 d-flex align-items-end">

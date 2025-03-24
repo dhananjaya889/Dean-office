@@ -32,13 +32,13 @@
                     <strong>Quarters Number:</strong> {{$bills->quartaz->num ?? 'N/A'}}
                 </div>
                 <div class="mb-3">
-                    <strong>User ID:</strong> {{$bills->user->reg_no ?? 'N/A'}}
+                    <strong>User ID:</strong> {{$user->reg_no ?? 'N/A'}}
                 </div>
                 <div class="mb-3">
-                    <strong>User Name:</strong> {{$bills->user->name ?? 'N/A'}}
+                    <strong>User Name:</strong> {{$user->name ?? 'N/A'}}
                 </div>
                 <div class="mb-3">
-                    <strong>Contact Number:</strong> {{$bills->user->phone_number ?? 'N/A'}}
+                    <strong>Contact Number:</strong> {{$user->phone_number ?? 'N/A'}}
                 </div>                  
                 @if($bills->image)
                 <div class="text-center">

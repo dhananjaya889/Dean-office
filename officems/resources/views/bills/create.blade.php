@@ -47,13 +47,13 @@
 
                     <div class="mb-3">
                         <label class="form-label">Assign to a user</label>
-                        <input type="text" name="assign_user" id="bill_user" class="form-control" value="{{Auth::user()->name}}" required>
-                        {{-- <select name="assign_user" id="" class="form-control">
+                        {{-- <input type="text" name="assign_user" id="bill_user" class="form-control" value="{{Auth::user()->id}}" required> --}}
+                        <select name="assign_user" id="" class="form-control">
                             <option value="">-- Select a user --</option>
                             @foreach ($users as $u)
                                 <option value="{{$u->id}}">{{$u->name}} - {{$u->email}}</option>
                             @endforeach
-                        </select> --}}
+                        </select>
                     </div>
                     
                     <div class="mb-3">

@@ -38,8 +38,8 @@
                         <input type="text" name="bill_id" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">User Name</label>
-                        <input type="text" name="user_id" class="form-control" value="{{Auth::user()->name}}" required>
+                        <label class="form-label">User ID</label>
+                        <input type="text" name="user_id" class="form-control"  value="{{Auth::user()->id}}" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Amount</label>

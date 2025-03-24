@@ -6,20 +6,38 @@
 </head>
 
 <body>
-    <h2>Dear sir/madam,</h2>
+    <p>{{ now()->format('Y/m/d') }}<br>
+        {{$user['name']}},<br>
+        {{$user['role']}},<br>
+        Faculty of Technology.
+        </p>
 
-    <p>We are excited to have you at Quarters.</p>
+    <h4>Dear Sir/Madam,</h4>
 
-    <h3>Quarters Id: {{$data->num}}</h3>
-    <h3>Quarters Address: {{$data->address}}</h3>
-    <h3>Quarters description: {{$data->description}}</h3>
-    
+    <p><u>Providing faculty residential facilities</u></p>
 
-    <p>Feel free to explore and let us know if you have any questions.</p>
-    <br>
-    <p>Best Regards,
-        <br>Faculty of Technology
-    </p>
+    <p>On the recommendation of the Housing Committee that met to consider your request, 
+        residential facilities have been provided in 
+        Staff House No. {{$data->num}} of the Faculty of Technology from {{ now()->format('Y/m/d') }}.</p>
+
+    <p>You hereby agree to hand over the house to the University in the event that the house is requested again due to the need of the Faculty or 
+        the University and to pay the University for any damage to the house.</p>
+
+    <p>The monthly rent for this house is {{$data->rent}}, 
+        and you must pay the electricity and water charges yourself. 
+        Furthermore, when you vacate the {{$data->num}} house, you must formally hand over the house to 
+        the faculty office.</p>
+
+    <br>I request you to inform the Assistant Registrar, Faculty of Technology in writing regarding your acceptance of the house.
+            For quarters information, visit www.MISDeanOffice.com.</p>
+
+    <p>Username: {{$user['email']}}<br>
+        Password: 12345678</p>
+
+    <p>Assistant Registrar,<br>
+        Faculty of Technology,<br>
+        University of Ruhuna.</p>
+
 </body>
 
 </html>

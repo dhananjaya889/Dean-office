@@ -73,6 +73,8 @@ Route::middleware([
     Route::post('items/store', [ItemController::class, 'store'])->name('items.store');
     Route::get('/items/{id}/{name}', [ItemController::class, 'getItemsById'])->name('items.show');
     Route::delete('/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
+    Route::get('/items/{id}/edit/{name}', [ItemController::class, 'edit'])->name('items.edit');
+    Route::put('/items/{id}', [ItemController::class, 'update'])->name('items.update');
 
     Route::get('previous_items',[ItemController::class, 'previous'])->name('previous_items.index');
     Route::get('/previous_items/download', [ItemController::class, 'downloadPdf'])->name('previous_items.download');
@@ -115,9 +117,15 @@ Route::middleware([
     Route::delete('/maintenance/{id}', [MaintenanceController::class, 'destroy'])->name('maintenance.destroy');
 
     //check list
+    Route::post('/check_list/store-item', [ChechListController::class, 'storeItems'])->name('check_list.store-item');
     Route::get('/check_list', [ChechListController::class, 'index'])->name('check_list.index');
     Route::get('/chech_list/create/{user_id}/{qua_id}', [ChechListController::class, 'create'])->name('check_list.create');
-    Route::post('/check_list/store', [ChechListController::class, 'store'])->name('check_list.store');
+    Route::get('/chech_list/get/single/{user_id}/{qua_id}', [ChechListController::class, 'getList'])->name('check_list.list');
+    Route::post('/check_list/store', [ChechListController::class, 'storeList'])->name('check_list.store');
+    Route::get('/chech_list/get-items', [ChechListController::class, 'getItems'])->name('check_list.get-items');
+    Route::post('/check_list/store-note', [ChechListController::class, 'addNote'])->name('check_list.store-note');
+    Route::put('/check_list/update-list/{id}', [ChechListController::class, 'updateList'])->name('check_list.update-list');
+    Route::delete('/check_list/delete/{id}', [ChechListController::class, 'delete'])->name('check_list.delete-item');
 
 
 });
