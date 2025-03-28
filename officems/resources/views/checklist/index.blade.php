@@ -53,7 +53,7 @@
                     </table>
                 </div>
                 <div id="paginationLinks">
-                    
+                    {{ $check_list->links() }}
                 </div>
 
             </div>
@@ -61,7 +61,7 @@
     </div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row mt-3 justify-content-center">
     <div class="col-md-12">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">Previeus Quarters Items Check List</div>
@@ -108,7 +108,7 @@
                     </table>
                 </div>
                 <div id="paginationLinks">
-                    
+                    {{ $prev->links() }}
                 </div>
 
             </div>

@@ -23,8 +23,8 @@
                                 <label class="form-label">Quarters Status</label>
                                 <select name="status" class="form-control">
                                     <option value=""> --- Status --- </option>
-                                    <option value="Selected Quarters">Selected Quarters</option>
-                                    <option value="Unselected Quarters">Unselected Quarters</option>
+                                    <option value="Assigned Quarters">Assigned Quarters</option>
+                                    <option value="Unassigned Quarters">Unassigned Quarters</option>
                                     <option value="Repearing Quarters">Repairing Quarters</option>
                                 </select>
                             </div>
@@ -38,7 +38,7 @@
                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
                                 <div class="col-sm-2 d-flex align-items-end">
                                     <a href="{{ route('previous_quartaz.index') }}" class="btn btn-warning">
-                                        Previous Quartaz
+                                        Previous Employee
                                     </a>
                                 </div>
                             @endif

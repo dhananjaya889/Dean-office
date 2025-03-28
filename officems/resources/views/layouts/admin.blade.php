@@ -32,10 +32,12 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- Brand -->
+                <div class="text-center w-100">
                 <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0 logo_image" href="">
-                    <img src="{{ asset('img/uni.png') }}" alt="logo" class="" width="45px" height="auto">
-                    <h4>Office Management</h4>
+                    <img src="{{ asset('img/uni.png') }}" alt="logo" class="" width="40px" height="auto">
+                    <h4>MIS Dean's Office</h4>
                 </a>
+                </div>
 
                 <hr class="navbar-divider my-0 opacity-20">
                 <!-- User menu (mobile) -->
@@ -134,7 +136,7 @@
                             </li>
                         @endif
 
-                        @if (Auth::user()->role == 'lecture' || Auth::user()->role == 'temporary-lecturer')
+                        @if (Auth::user()->role == 'lecturer' || Auth::user()->role == 'temporary-lecturer')
                             <li class="nav-item">
                                 <a class="nav-link px-3 py-2 rounded-pill text-white bg-info shadow-sm d-flex align-items-center gap-2"
                                     href="{{ url('/quartaz/user/' . Auth::user()->id) }}"

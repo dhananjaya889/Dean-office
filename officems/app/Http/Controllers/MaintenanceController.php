@@ -117,10 +117,10 @@ class MaintenanceController extends Controller
                             
                             <h3>Adding the new complaint</h3>
                             
-                            <p>A new complaint has been submitted; please check. And I kindly request you to provide a solution to this as soon as possible.</p>
+                            <p>I have submitted a new complaint; please check. I kindly request that you provide a solution to this as soon as possible.</p>
                             
                             <p><b>User Name :</b>  ' . $user->name . '</p>
-                            <p><b>Quarters Number : '. $qua->num .'</b></p>
+                            <p><b>Quarters Number : </b>'. $qua->num .'</p>
                             <p><b>Description :</b> ' . $request->description . '</p>
                             
                             <br>
@@ -132,7 +132,7 @@ class MaintenanceController extends Controller
                         </html>
                         ';
             $data = [
-                'title' => 'New Maintenance Submited',
+                'title' => 'A new complaint has been received.',
                 'body' => $body,
             ];
 
@@ -172,7 +172,7 @@ class MaintenanceController extends Controller
                         </body>
                         </html>';
             $data = [
-                'title' => 'New Maintenance Submited, check on your dashboard',
+                'title' => 'A new complaint has been received; please check it.',
                 'body' => $body,
             ];
 
@@ -181,7 +181,7 @@ class MaintenanceController extends Controller
 
 
 
-        return redirect()->route('maintenance')->with('success', 'Inquery marked successful!');
+        return redirect()->route('maintenance')->with('success', 'Complaint marked successful!');
 
     }
 
@@ -237,17 +237,40 @@ class MaintenanceController extends Controller
         $qua = Quartaz::where('id', $qitem->quartaz)->first();
 
         if ($request->admin_approve == 'tudo') {
-            $body = '<h4>New Maintenance</h4>
-                    <br>
-                    Hi, <br> There is a new maintenance Submited, check on your dashboard
-                        <br><b>From :</b> ' . $user->name . '
-                        <br><b> Item : </b> ' . $item->name . '
-                        <br><b>Description : </b>' . $request->description . '
-                        <br>
-                        <br>Best Regards,
-                        <br>Faculty of Technology.';
+            $body = '<html lang="en">
+                        <head>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    margin: 40px;
+                                }
+                                h3 {
+                                    text-decoration: underline;
+                            </style>
+                        </head>
+                        <body>
+                        
+                            <p>Assistant Registrar<br>
+                            Faculty of Technology<br>
+                            University of Ruhuna</p>
+                            
+                            <h3>A New Quarters Maintenance work</h3>
+                            
+                            <p>A new complaint has been submitted; please check. Resolve this as soon as possible.</p>
+                            
+                            <p><b>From User :</b>  ' . $user->name . '</p>
+                            <p><b>Quarters Number : '. $qua->num .'</b></p>
+                            <p><b>Description :</b> ' . $request->description . '</p>
+                            
+                            <br>
+                            
+                            <p>' . $user->name . '<br>
+                            Faculty of Technology</p>
+                            
+                        </body>
+                        </html>';
             $data = [
-                'title' => 'New Maintenance Submited, check on your dashboard',
+                'title' => 'A new complaint has been received; please check it.',
                 'body' => $body,
             ];
             info("call");
@@ -275,7 +298,6 @@ class MaintenanceController extends Controller
                             <p>The maintenance team has completed the maintenance work on your quarters.</p>
                             
                             <p><b>From User :</b>  ' . $user->name . '</p>
-                            <p><b>Item Name :</b> ' . $item->name . '</p>
                             <p><b>Quarters Number :</b>'. $qua->num .'</p>
                             <p><b>Description :</b> ' .($request->maintenance_description ?? 'No description provided') . '</p>
                             
@@ -294,7 +316,7 @@ class MaintenanceController extends Controller
             Mail::to($user->email)->send(new MaintenanceMail($data));
         }
 
-        return redirect()->route('maintenance')->with('success', 'Inquery updated successful!');
+        return redirect()->route('maintenance')->with('success', 'Complaint updated successful!');
     }
 
     public function getMaintenance(Request $request)

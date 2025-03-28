@@ -58,9 +58,9 @@
                         </div>
                         <div class="mb-3"><label class="form-label">Quarters Status</label>
                             <select name="status" class="form-control">
-                                <option value=""><--- Selecte ---> </option>
-                                <option value="Selected Quarters">Selected Quarters</option>
-                                <option value="Unselected Quarters">Unselected Quarters</option>
+                                <option value=""><--- Select ---> </option>
+                                <option value="Assigned Quarters">Assigned Quarters</option>
+                                <option value="Unassigned Quarters">Unassigned Quarters</option>
                                 <option value="Repearing Quarters">Repairing Quarters</option>
                             </select>
                         </div>

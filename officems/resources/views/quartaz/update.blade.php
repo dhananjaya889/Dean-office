@@ -56,8 +56,8 @@
                                 <label class="form-label fw-bold">Status</label>
                                 <select name="status" class="form-select" required>
                                     <option value="{{ $quartaz->status }}" selected>{{ $quartaz->status }}</option>
-                                    <option value="Selected Quarters">Selected Quarters</option>
-                                    <option value="Unselected Quarters">Unselected Quarters</option>
+                                    <option value="Assigned Quarters">Assigned Quarters</option>
+                                    <option value="Unassigned Quarters">Unassigned Quarters</option>
                                     <option value="Repearing Quarters">Repairing Quarters</option>
                                 </select>
                             </div>

@@ -190,7 +190,7 @@ class QuartazController extends Controller
             'rent' => $quartaz->rent
         ];
 
-        $quartaz->status = 'unselected';
+        $quartaz->status = 'Unassigned Quarters';
         $quartaz->save();
         // Delete the quartaz record
         $quser->delete(); 

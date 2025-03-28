@@ -37,7 +37,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Employee Number</label>
-                            <input type="text"name="reg_no" class="form-control" required>
+                            <input type="text"name="reg_no" class="form-control" placeholder="R00----" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>

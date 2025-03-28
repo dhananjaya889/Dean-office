@@ -43,6 +43,9 @@ class ChechListController extends Controller
         $check_list = $check->get();
         $prev = $prevQ->get();
 
+        $check_list = $check->paginate(2);
+        $prev = $prevQ->paginate(1);
+
 
         return view('checklist.index', compact('check_list', 'prev'));
     }
